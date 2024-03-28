@@ -1,0 +1,157 @@
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.arrow_container {
+    display: flex;
+    position: absolute;
+    justify-content: left;
+    align-items: left;
+    text-align: left;
+    margin-top: 1rem;
+    margin-right: 50%;
+    gap: 0.8rem;
+}
+
+.btn_arrow_previous, .btn_arrow_next {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.4rem;
+    border: none;
+    background-color: transparent;
+    font-size: 1.4rem;
+    border-radius: 50%;
+    background-color: #131313;
+    cursor: pointer;
+}
+
+.btn_arrow_previous i, .btn_arrow_next i {
+    color: #7B7B7B;
+}
+
+.btn_arrow_previous i:hover, .btn_arrow_next i:hover {
+    color: white;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: #0A0A0A;
+    border-radius: 40px;
+    margin-top: 1rem;
+    margin-left: 2rem;
+    margin-right: 1rem;
+    cursor: pointer;
+}
+
+.options_container {
+    display: flex;
+    justify-content: right;
+    align-items: right;
+    margin-left: 80%;
+    flex-direction: column;
+    padding-left: 4rem;
+}
+
+.options_container h3 {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+}
+
+.profile_container {
+    display: block;
+    background-color: #282828;
+    padding-left: 1rem;
+    padding-right: 5rem;
+    margin-top: 4rem;
+    position: absolute;
+}
+
+.profile_container h3 {
+    color: rgb(215, 200, 200);
+}
+.profile_container h3:hover {
+    color: white;
+}
+
+.user:hover {
+    background-color: #303030;
+}
+
+.user_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    gap: 0.8rem;
+}
+
+#user_photo {
+    font-size: 2rem;
+}
+
+#arrow_profile {
+    font-size: 0.8rem;
+    margin-right: 0.4rem;
+}
+
+
+.btn_login {
+    border: none;
+    background-color: white;
+    border-radius: 20px;
+    margin-top: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    cursor: pointer;
+    transition: .1s ease-in-out all;
+}
+
+.login_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.btn_login h3 {
+    color: black;
+}
+
+.btn_login:hover {
+    transform: scale(1.1);
+}
+
+.btn_registro {
+    border: none;
+    background-color: transparent;
+    margin-top: 1rem;
+    cursor: pointer;
+    transition: .1s ease-in-out all;
+    font-size: 1rem;
+}
+
+.btn_registro:hover {
+    text-decoration: underline;
+    transform: scale(1.1);
+    color: white;
+}
+
+.options_container_login {
+    display: flex;
+    justify-content: right;
+    align-items: right;
+    margin-left: 75%;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+.options_container_login h3 {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+}

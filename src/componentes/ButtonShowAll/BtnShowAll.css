@@ -1,0 +1,14 @@
+.showall {
+    display: flex;
+    justify-content: right;
+    align-items: right;
+    margin-right: 4rem;
+    margin-top: 1rem;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.showall p:hover {
+    text-decoration: underline;
+}

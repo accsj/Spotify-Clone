@@ -1,0 +1,19 @@
+.playlist_content {
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    text-align: left;
+    margin-top: 2rem;
+    margin-right: 0%;
+    margin-left: 20%;
+    height: 100%;
+    flex-direction: column;
+    cursor: default;
+}
+
+.playlist_content h1 {
+    font-size: 2rem;
+    margin-left: 2rem;
+}
+
+

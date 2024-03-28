@@ -1,0 +1,25 @@
+.btn_play_item {
+    border-radius: 50%;
+    background-color: #1ED760;
+    border: none;
+    margin-left: 18rem;
+    position: absolute;
+    display: flex;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: .1s ease-in-out all;
+}
+
+.btn_play_item:hover {
+    transform: scale(1.1);
+}
+
+.btn_play_item i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 2rem;
+    color: black;
+    margin-left: 0.2rem;
+}

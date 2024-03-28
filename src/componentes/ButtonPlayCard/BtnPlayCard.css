@@ -1,0 +1,26 @@
+.btn_play_card {
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    justify-content: left;
+    align-items: left;
+    text-align: right;
+    background-color: #1ED760;
+    border-radius: 50%;
+    padding: 0.5rem;
+    margin-top: 10rem;
+    margin-left: 9.8rem;
+    cursor: pointer;
+    transition: .1s ease-in-out all;
+}
+
+.btn_play_card:hover {
+    transform: scale(1.15);
+}
+
+.btn_play_card i {
+    position: relative;
+    color: black;
+    font-size: 1.5rem;
+    margin-left: 0.1rem;
+}

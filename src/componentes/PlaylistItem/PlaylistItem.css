@@ -1,0 +1,58 @@
+.main_playlists {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto; 
+    gap: 20px; 
+    justify-content: right; 
+    margin-left: 2rem;
+}
+
+
+.playlist_container {
+    display: flex;
+    align-items: center;
+    border: none;
+    background-color: #303030;
+    width: 362px;
+    height: 90px;
+    padding-left: 0;
+    cursor: pointer;
+}
+
+.playlist_container h3 {
+    margin-left: 1rem;
+    font-size: 0.8rem;
+}
+
+.playlist_container:hover {
+    background-color: #252525;
+}
+
+.playlist {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25%;
+    height: 102.5%;
+}
+
+.liked_playlist {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(#4000F4, #C0ECD7);
+    width: 100%;
+    height: 100%;
+}
+
+.liked_playlist i {
+    font-size: 2rem;
+}
+
+.album_photo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
