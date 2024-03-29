@@ -1,0 +1,14 @@
+* {
+    text-decoration: none;
+    color: rgb(228, 212, 212);
+
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    margin: 0;
+}
+
+.main_container {
+    height: 1200px;
+}

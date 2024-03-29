@@ -1,0 +1,22 @@
+.footerauth {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+    background: #242424;
+    width: 100%;
+}
+
+.disclaimer {
+    padding: 1rem;
+}
+
+.disclaimer p {
+    font-size: 0.8rem;
+    cursor: default;
+}
+
+.disclaimer a {
+    text-decoration: underline;
+}
