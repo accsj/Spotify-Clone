@@ -8,7 +8,7 @@ export default function Header () {
         setMenu(!menu);
     };
 
-    const [auth] = useState(true); // Caso o usuário não esteja autenticado irá mostrar os botões de login e registro
+    const [auth] = useState(false); // Caso o usuário não esteja autenticado irá mostrar os botões de login e registro
 
 
     return (
