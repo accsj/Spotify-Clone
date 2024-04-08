@@ -1,12 +1,10 @@
 import '../LoginForm/LoginForm.css';
 
-
-
 export default function LoginForm () {
 
 
     return (
-        <section className="login_container">
+        <section className="login_container_form">
             <div className="title">
                 <h1>Entrar no Spotify</h1>
             </div>
