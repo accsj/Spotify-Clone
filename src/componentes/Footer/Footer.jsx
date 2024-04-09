@@ -3,7 +3,7 @@ import CurrentSong from '../../assets/imgs/Macdemarcoalbum.png';
 import { BsPlayCircleFill, BsPauseCircleFill } from "react-icons/bs";
 import { AiFillStepForward, AiFillStepBackward } from "react-icons/ai";
 import { useState, useRef, useEffect } from 'react'; 
-import ProgressBar from '../ProgressBar/ProgressBar';
+import ProgressBar from '../ProgressBar/Progressbar';
 
 export default function Footer ({songUrl, imageUrl, title, subtitle }) {
     const [isPlaying , setIsPlaying] = useState(false);
