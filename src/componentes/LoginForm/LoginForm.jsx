@@ -5,7 +5,7 @@ export default function LoginForm () {
 
     return (
         <section className="login_container_form">
-            <div className="title">
+            <div className="title_auth">
                 <h1>Entrar no Spotify</h1>
             </div>
             <button className="google_login">

@@ -1,0 +1,25 @@
+.btn_login {
+    border: none;
+    background-color: white;
+    border-radius: 20px;
+    margin-top: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    cursor: pointer;
+    transition: .1s ease-in-out all;
+}
+
+.btn_login_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.btn_login h3 {
+    color: black;
+}
+
+.btn_login:hover {
+    transform: scale(1.1);
+}

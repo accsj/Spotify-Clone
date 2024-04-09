@@ -1,0 +1,14 @@
+.btn_registro {
+    border: none;
+    background-color: transparent;
+    margin-top: 1rem;
+    cursor: pointer;
+    transition: .1s ease-in-out all;
+    font-size: 1rem;
+}
+
+.btn_registro:hover {
+    text-decoration: underline;
+    transform: scale(1.1);
+    color: white;
+}
