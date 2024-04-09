@@ -73,46 +73,37 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    margin-left: 22%;
+    margin-left: 20%;
     margin-top: 19%;
     margin-bottom: 18rem;
     flex-direction: column;
 }
 
 .btn_play {
-    background-color: white;
     border: none;
-    border: 2px solid white;
     border-radius: 50%;
     cursor: pointer;
     transition: .1s ease-in-out all;
+    font-size: 2rem;
 }
+
 
 .btn_play:hover {
     transform: scale(1.1);
 }
 
-.btn_play i {
-    font-size: 1.5rem;
-    color: black;
-    margin-left: 0.2rem;
-}
-
-.btn_skip_next  {
-    display: flex;
+.btn_skip_next {
     background-color: transparent;
     border: none;
     margin-left: 2rem;
     transition: ease-in-out;
     cursor: pointer;
-}
-
-.btn_skip_next i:hover {
-    color: white;
-}
-
-.btn_skip_next i {
     font-size: 2rem;
+    padding: 0.2;
+}
+
+.btn_skip_next :hover {
+    color: white;
 }
 
 .btn_skip_previous {
@@ -121,40 +112,49 @@
     margin-right: 2rem;
     transition: .1s ease-in-out;
     cursor: pointer;
-}
-
-.btn_skip_previous i {
     font-size: 2rem;
+    padding: 0.2;
 }
 
-.btn_skip_previous i:hover {
+.btn_skip_previous :hover {
     color: white;
 }
 
 .playerbuttons {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-left: 2.5rem;
 }
 
-.currentTime {
-    display: flex;
-    gap: 0.5rem;
+.current-time {
     margin-top: 1rem;
     align-items: center;
+    position: absolute;
+    top: 43px;
+    cursor: default;
+}
+
+.total-time {
+    cursor: default;
+    position: absolute;
+    top: 60px;
+    margin-left: 0.2rem;
 }
 
 .progressbar {
     -webkit-appearance: none;
     appearance: none;
-    width: 100%;
+    width: 250px;
     height: 4px; 
     background-color: #f4f4f4; 
     border-radius: 5px; 
     outline: none; 
     transition: .1s ease-in-out all;
-}
-
-.progressbar:hover {
-    background-color: #1db954;
+    position: relative;
+    margin-top: 1rem;
+    margin-left: 2.5rem;
 }
 
 .progressbar::-webkit-slider-thumb {
@@ -175,10 +175,3 @@
     cursor: pointer; 
 }
 
-.progressbar::-webkit-slider-runnable-track {
-    background: linear-gradient(to right, #1db954 0%, #1db954 calc(((var(--value) - min) / (max - min)) * 100%));
-}
-
-.progressbar::-moz-range-track {
-    background: linear-gradient(to right, #1db954 0%, #1db954 calc(((var(--value) - min) / (max - min)) * 100%));
-}
