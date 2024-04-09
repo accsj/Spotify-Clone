@@ -3,7 +3,7 @@ import CurrentSong from '../../assets/imgs/Macdemarcoalbum.png';
 import { BsPlayCircleFill, BsPauseCircleFill } from "react-icons/bs";
 import { AiFillStepForward, AiFillStepBackward } from "react-icons/ai";
 import { useState, useRef, useEffect } from 'react'; 
-import ProgressBar from '../ProgressBar/Progressbar';
+import ProgressBar from '../ProgressBar/ProgressBar';
 
 export default function Footer ({songUrl, imageUrl, title, subtitle }) {
     const [isPlaying , setIsPlaying] = useState(false);
@@ -13,31 +13,37 @@ export default function Footer ({songUrl, imageUrl, title, subtitle }) {
     const Icon = isPlaying ? BsPauseCircleFill : BsPlayCircleFill;
     
     useEffect(() => {
-        audioRef.current.src = songUrl;
-        audioRef.current.addEventListener('loadedmetadata', () => {
-            setDuration(audioRef.current.duration);
+        const audio = audioRef.current;
+
+        audio.src = songUrl;
+        audio.addEventListener('loadedmetadata', () => {
+            setDuration(audio.duration);
         });
 
         if (songUrl) {
-            audioRef.current.play()
-                .then(() => console.log('Reprodução iniciada'))
+            audio.play()
+                .then(() => {
+                    console.log('Reprodução iniciada');
+                    setIsPlaying(true);
+                })
                 .catch(error => console.error('Erro ao reproduzir áudio:', error));
-                setIsPlaying(true)
         } 
 
         return () => {
-            audioRef.current.removeEventListener('loadedmetadata', () => {});
+            audio.removeEventListener('loadedmetadata', () => {});
         };
     }, [songUrl]);
 
     useEffect(() => {
+        const audio = audioRef.current;
+
         if (isPlaying) {
-            audioRef.current.play()
+            audio.play()
                 .catch(error => {
                     console.error('Erro ao reproduzir áudio:', error);
                 });
         } else {
-            audioRef.current.pause();
+            audio.pause();
         }
     }, [isPlaying]);
 

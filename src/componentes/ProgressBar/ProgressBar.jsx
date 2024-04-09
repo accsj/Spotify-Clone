@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 function ProgressBar({ audioRef }) {
     const [currentTime, setCurrentTime] = useState(0);
@@ -15,11 +15,11 @@ function ProgressBar({ audioRef }) {
         return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
     };
 
-    const handleTimeUpdate = () => {
+    const handleTimeUpdate = useCallback(() => {
         if (!isDragging) {
             setCurrentTime(audioRef.current.currentTime);
         }
-    };
+    }, [audioRef, isDragging]);
 
     const handleDragStart = () => {
         setIsDragging(true);
@@ -29,24 +29,27 @@ function ProgressBar({ audioRef }) {
         setIsDragging(false);
     };
 
-    const handleDurationChange = () => {
-        setDuration(audioRef.current.duration);
-    };
-
     useEffect(() => {
-        audioRef.current.addEventListener('timeupdate', handleTimeUpdate);
+        const audio = audioRef.current;
+        audio.addEventListener('timeupdate', handleTimeUpdate);
         return () => {
-            audioRef.current.removeEventListener('timeupdate', handleTimeUpdate);
+            audio.removeEventListener('timeupdate', handleTimeUpdate);
         };
-    }, [audioRef,]);
+    }, [audioRef, handleTimeUpdate, isDragging]);
 
     useEffect(() => {
-        audioRef.current.addEventListener('loadedmetadata', handleDurationChange);
+        const handleDurationChange = () => {
+            setDuration(audioRef.current.duration);
+        };
+    
+        const audio = audioRef.current;
+        audio.addEventListener('loadedmetadata', handleDurationChange);
         return () => {
-            audioRef.current.removeEventListener('loadedmetadata', handleDurationChange);
+            audio.removeEventListener('loadedmetadata', handleDurationChange);
         };
     }, [audioRef]);
 
+    
     return (
         <div className="progress-bar">
             <span className="current-time">{formatTime(currentTime)}</span>

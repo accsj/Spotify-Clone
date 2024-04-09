@@ -7,7 +7,6 @@ import CharliePuth from '../../assets/imgs/charlieputh.jpg';
 import BritneySpears from '../../assets/imgs/BritneySpears.jpeg';
 import EarthWindAndFire from '../../assets/imgs/earthwindandfire.jpeg';
 import SabrinaCarpenter from '../../assets/imgs/sabrinacarpenter.webp';
-import WhenIWasYourMan from '../../assets/imgs/wheniwasyourman.jpg';
 import Macdemarco from '../../assets/imgs/Album_macdemarco.jpg';
 import CardItem from '../../api/PlaylistCards';
 import TitleDivisor from '../Title Divisor/TitleDivisor';
