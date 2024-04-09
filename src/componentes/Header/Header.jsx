@@ -1,5 +1,8 @@
 import '../Header/Header.css';
 import { useState } from 'react';
+import BtnAuthLogin from '../BtnAuthLogin/BtnAuthLogin';
+import BtnAuthRegister from '../BtnAuthRegister/BtnAuthRegister';
+
 
 export default function Header () {
     const [menu, setMenu] = useState(false);
@@ -9,7 +12,6 @@ export default function Header () {
     };
 
     const [auth] = useState(false); // Caso o usuário não esteja autenticado irá mostrar os botões de login e registro
-
 
     return (
         <header className='content'>
@@ -21,7 +23,6 @@ export default function Header () {
                     <i className='bx bx-chevron-right'></i>
                 </button>
             </div>
-
             {auth ? (
                 <div className='options_container'>
                     <button className='user' onClick={ShowMenu}>
@@ -41,16 +42,8 @@ export default function Header () {
                 </div>
             ):(
                 <div className='options_container_login'>
-                    <button className="btn_registro">
-                        <div className="registro_container">
-                            <p>Inscreva-se</p>
-                        </div>
-                    </button>
-                    <button className='btn_login'>
-                        <div className='login_container'>
-                            <h3>Entrar</h3>
-                        </div>
-                    </button>
+                    <BtnAuthRegister title='Inscrever-se'/>
+                    <BtnAuthLogin title='Entrar'/>
                 </div>
             )}
         </header>
