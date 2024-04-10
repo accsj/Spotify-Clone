@@ -23,7 +23,7 @@ export default function PlaylistCard ({ playSongFromCard }) {
     useEffect(() => {
         const fetchMusics = async () => {
             try {
-                const response = await Axios.get('http://localhost:5000/musics', {withCredentials: true});
+                const response = await Axios.get('https://spotify-clone-back-end.onrender.com/musics', {withCredentials: true});
                 if (response.data.success) {
                     setMusics(response.data.data);
                 } else {
