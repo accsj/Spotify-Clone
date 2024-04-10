@@ -16,6 +16,7 @@ export default function HomePage () {
         setImageUrl(image)
         setTitle(title)
         setSubtitle(subtitle)
+        console.log(songUrl)
     };
 
     return (

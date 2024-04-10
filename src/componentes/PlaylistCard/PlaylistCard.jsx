@@ -12,10 +12,31 @@ import CardItem from '../../api/PlaylistCards';
 import TitleDivisor from '../Title Divisor/TitleDivisor';
 import WeDont from '../../assets/songs/CharliePuth.mp3';
 import GimmeMore from '../../assets/songs/Britney Spears.mp3';
+import Axios from 'axios';
+import { useEffect } from 'react';
 
 
 export default function PlaylistCard ({ playSongFromCard }) {
     const [hoveredIndex, setHoveredIndex] = useState(null);
+    const [musics, setMusics] = useState([]);
+
+    useEffect(() => {
+        const fetchMusics = async () => {
+            try {
+                const response = await Axios.get('http://localhost:5000/musics', {withCredentials: true});
+                if (response.data.success) {
+                    setMusics(response.data.data);
+                } else {
+                    console.error('Erro ao buscar músicas:', response.data.message);
+                }
+            } catch (error) {
+                console.error('Erro ao buscar músicas:', error);
+            }
+        };
+
+        fetchMusics();
+    }, []);
+
 
     return (
     <>
@@ -62,50 +83,18 @@ export default function PlaylistCard ({ playSongFromCard }) {
         />
         
         <div className="main_card_container">
-            <CardItem 
-                id={1}
-                songUrl={WeDont}
-                image={CharliePuth}
-                title="We Don't Talk Anymore"
-                subtitle="Charlie Puth"
-                hoveredIndex={hoveredIndex}
-                setHoveredIndex={setHoveredIndex}
-                playSongFromCard={playSongFromCard}
-                imageUrl={CharliePuth}
-                currentTitle="We Don't Talk Anymore"
-                currentSubtitle="Charlie Puth"
-            />
-
-            <CardItem
-                id={2}
-                songUrl={GimmeMore}
-                image={BritneySpears}
-                title="Gimme More"
-                subtitle="Britney Spears"
-                hoveredIndex={hoveredIndex}
-                setHoveredIndex={setHoveredIndex}
-                playSongFromCard={playSongFromCard}
-                imageUrl={BritneySpears}
-                currentTitle="Gimme More"
-                currentSubtitle="Britney Spears"
-            />
-
-            <CardItem 
-                image={SabrinaCarpenter}
-                title="Feather"
-                subtitle="Sabrina Carpenter"
-                hoveredIndex={hoveredIndex}
-                setHoveredIndex={setHoveredIndex}
-                playSongFromCard={playSongFromCard}
-            />
-
-            <CardItem 
-                image={EarthWindAndFire}
-                title="Boogie Wonderland"
-                subtitle="Earth, Wind & Fire, The Emotions"
-                hoveredIndex={hoveredIndex}
-                setHoveredIndex={setHoveredIndex}
-            />
+                {musics.map((music, index) => (
+                    <CardItem
+                        key={index}
+                        songUrl={music.songurl}
+                        image={music.imageurl}
+                        title={music.title}
+                        subtitle={music.subtitle}
+                        hoveredIndex={hoveredIndex}
+                        setHoveredIndex={setHoveredIndex}
+                        playSongFromCard={playSongFromCard}
+                    />
+                ))}
         </div>
     </>
     )

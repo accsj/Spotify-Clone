@@ -4,7 +4,6 @@ import BtnPlayCard from "../componentes/ButtonPlayCard/BtnPlayCard";
 function CardItem({image, title, subtitle, songUrl , playSongFromCard, imageUrl, currentTitle, currentSubtitle}) {
     const [isHovered, setIsHovered] = useState(false);
 
-
     return (
         <button className='playlist_card_container'
         onMouseEnter={() => setIsHovered(true)}
