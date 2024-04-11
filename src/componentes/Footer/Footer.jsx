@@ -8,6 +8,7 @@ import ProgressBar from '../ProgressBar/ProgressBar';
 import Axios from 'axios';
 import { toast } from 'react-toastify';
 
+
 export default function Footer ({songUrl, imageUrl, title, subtitle }) {
     const [isPlaying , setIsPlaying] = useState(false);
     const audioRef = useRef(new Audio());
@@ -17,7 +18,6 @@ export default function Footer ({songUrl, imageUrl, title, subtitle }) {
     
     useEffect(() => {
         const audio = audioRef.current;
-
         audio.src = songUrl;
         audio.addEventListener('loadedmetadata', () => {
             setDuration(audio.duration);
