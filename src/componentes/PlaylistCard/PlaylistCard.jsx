@@ -1,25 +1,36 @@
 import '../PlaylistCard/PlaylistCard.css';
 import { useState } from 'react';
-import TheWeeknd from '../../assets/imgs/theweeknd.jpg';
-import Dayseeker from '../../assets/imgs/dayseeker.jpeg';
-import BrunoMars from '../../assets/imgs/brunomars.jpeg';
-import Macdemarco from '../../assets/imgs/Album_macdemarco.jpg';
 import CardItem from '../../api/PlaylistCards';
 import TitleDivisor from '../Title Divisor/TitleDivisor';
 import Axios from 'axios';
 import { useEffect } from 'react';
+import useCheckAuthentication from '../../api/Authenticator.jsx';
 
 
 export default function PlaylistCard ({ playSongFromCard }) {
     const [hoveredIndex, setHoveredIndex] = useState(null);
     const [musics, setMusics] = useState([]);
+    const [visibleMusics, setVisibleMusics] = useState(4);
+    const token = document.cookie.split(';').find(cookie => cookie.trim().startsWith('token'));
+    const isAutenticado = useCheckAuthentication();
+
 
     useEffect(() => {
         const fetchMusics = async () => {
             try {
-                const response = await Axios.get('http://localhost:5000/musics', {withCredentials: true});
+                let response;
+                if (isAutenticado) {
+                    response = await Axios.get('http://localhost:5000/listyoursongs', {
+                        withCredentials: true,
+                        headers: { 'Authorization': `Bearer ${token.split('=')[1]}` }
+                    });
+                } else {
+                    response = await Axios.get('http://localhost:5000/musics');
+                    console.log(response.data)
+                }
                 if (response.data.success) {
-                    setMusics(response.data.data);
+                    const shuffledMusics = response.data.data.sort(() => Math.random() - 0.5);
+                    setMusics(shuffledMusics);
                 } else {
                     console.error('Erro ao buscar músicas:', response.data.message);
                 }
@@ -29,59 +40,36 @@ export default function PlaylistCard ({ playSongFromCard }) {
         };
 
         fetchMusics();
-    }, []);
+    }, [isAutenticado, token]);
 
+    const toggleMoreMusics = () => {
+        if (visibleMusics === 4) {
+            setVisibleMusics(prevVisibleMusics => prevVisibleMusics + 4);
+        } else {
+            setVisibleMusics(4);
+        }
+    };
 
     return (
     <>
-        <TitleDivisor 
-            title="Você pode gostar"
+        {isAutenticado ? (
+            <TitleDivisor 
+                title="Suas músicas mais ouvidas"
+                showMore={musics.length > visibleMusics ? toggleMoreMusics : toggleMoreMusics}
+            />
+        ) : (
+            <TitleDivisor 
+            title="Descubra novas músicas"
+            showMore={musics.length > visibleMusics ? toggleMoreMusics : toggleMoreMusics}
         />
+        )}
         
         <div className="main_card_container">
-            <CardItem
-                image={Macdemarco}
-                title="Salad Days"
-                subtitle="Mac DeMarco"
-                hoveredIndex={hoveredIndex}
-                setHoveredIndex={setHoveredIndex}
-            />
-
-            <CardItem 
-                image={TheWeeknd}
-                title="After Hours"
-                subtitle="The Weeknd"
-                hoveredIndex={hoveredIndex}
-                setHoveredIndex={setHoveredIndex}
-            />
-
-            <CardItem
-                image={Dayseeker}
-                title="Dark Sun"
-                subtitle="Dayseeker"
-                hoveredIndex={hoveredIndex}
-                setHoveredIndex={setHoveredIndex}
-            />
-
-            <CardItem 
-                image={BrunoMars}
-                title="Unorthodox Jukebox"
-                subtitle="Bruno Mars"
-                hoveredIndex={hoveredIndex}
-                setHoveredIndex={setHoveredIndex}
-            />
-        </div>
-
-        <TitleDivisor 
-            title="Seus mixes mais ouvidos"
-        />
-        
-        <div className="main_card_container">
-                {musics.map((music, index) => (
+                {musics.slice(0, visibleMusics).map((music, index) => (
                     <CardItem
                         key={index}
                         songUrl={music.songurl}
-                        image={music.imageurl}
+                        imageUrl={music.imageurl}
                         title={music.title}
                         subtitle={music.subtitle}
                         hoveredIndex={hoveredIndex}

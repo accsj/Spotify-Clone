@@ -9,13 +9,14 @@ import Axios from 'axios';
 import { toast } from 'react-toastify';
 
 
+
 export default function Footer ({songUrl, imageUrl, title, subtitle }) {
     const [isPlaying , setIsPlaying] = useState(false);
     const audioRef = useRef(new Audio());
     const [duration, setDuration] = useState(0); 
     const Icon = isPlaying ? BsPauseCircleFill : BsPlayCircleFill;
     const token = document.cookie.split(';').find(cookie => cookie.trim().startsWith('token'));
-    
+
     useEffect(() => {
         const audio = audioRef.current;
         audio.src = songUrl;
@@ -107,33 +108,37 @@ export default function Footer ({songUrl, imageUrl, title, subtitle }) {
                 theme: "colored",
                 });
         }
-    }
+    }   
+
 
     return (
         <footer className='footer'>
-            <div className='CurrentSong'>
-                <img className='album' src={imageUrl || CurrentSong} alt="CurrentSong" />
-                <div className='info'>
-                    <a className='NameSong' href='/'>
-                        <h2>{title}</h2>
-                    </a>
-                    <a className='artist' href='/'>
-                        <p>{subtitle}</p>
-                    </a>
+            {songUrl && (
+                <div className='CurrentSong'>
+                    <img className='album' src={imageUrl || CurrentSong} alt="CurrentSong" />
+                    <div className='info'>
+                        <a className='NameSong' href='/'>
+                            <h2>{title}</h2>
+                        </a>
+                        <a className='artist' href='/'>
+                            <p>{subtitle}</p>
+                        </a>
+                    </div>
+                    <div className='likesong' onClick={handleLikeSong}>
+                        <i className='bx bx-heart' ></i>
+                    </div>
                 </div>
-                <div className='likesong' onClick={handleLikeSong}>
-                    <i className='bx bx-heart' ></i>
+            )}
+            {songUrl && (
+                <div className='player'>
+                    <div className='playerbuttons'>
+                        <AiFillStepBackward className='btn_skip_previous'/>
+                        <Icon className='btn_play' onClick={handlePlayPause}/>
+                        <AiFillStepForward className='btn_skip_next'/>
+                    </div>
+                    <ProgressBar audioRef={audioRef} duration={duration} onEnded={handleEnded} />
                 </div>
-            </div>
-            
-            <div className='player'>
-                <div className='playerbuttons'>
-                    <AiFillStepBackward className='btn_skip_previous'/>
-                    <Icon className='btn_play' onClick={handlePlayPause}/>
-                    <AiFillStepForward className='btn_skip_next'/>
-                </div>
-                <ProgressBar audioRef={audioRef} duration={duration} onEnded={handleEnded} />
-            </div>
+            )}
         </footer>
     )
 }

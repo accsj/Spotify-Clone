@@ -1,14 +1,13 @@
-import '../Title Divisor/TitleDivisor.css'
+import '../Title Divisor/TitleDivisor.css';
 import BtnShowall from "../ButtonShowAll/BtnShowAll";
 
-
-function TitleDivisor({title}) {
+function TitleDivisor({ title, showMore}) {
     return (
         <div className='title'>
             <h2>{title}</h2>
-            <BtnShowall />
+            {showMore && <BtnShowall showMore={showMore} />} 
         </div>
-    )
+    );
 }
 
 export default TitleDivisor;

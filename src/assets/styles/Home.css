@@ -5,13 +5,9 @@
 }
 
 body {
-    background: linear-gradient(#222222, #121212 );
     font-family: 'DM Sans', sans-serif;
     margin: 0;
-}
-
-.main_container {
-    height: 1500px;
+    background: linear-gradient(#222222, #202020);
 }
 
 

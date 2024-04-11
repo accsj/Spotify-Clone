@@ -1,9 +1,9 @@
 import '../ButtonPlayCard/BtnPlayCard.css';
 
-export default function BtnPlayCard ({playSongFromCard, songUrl, imageUrl, currentTitle, currentSubtitle}) {
+export default function BtnPlayCard ({playSongFromCard, songUrl, imageUrl, title, subtitle}) {
 
     const handlePlayButtonClick = () => {
-        playSongFromCard(songUrl, imageUrl, currentTitle, currentSubtitle);
+        playSongFromCard(songUrl, imageUrl, title, subtitle);
     };
 
     return (
