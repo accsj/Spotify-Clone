@@ -1,15 +1,16 @@
 import '../../componentes/PlaylistCard/PlaylistCard.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import Axios from 'axios';
 import TitleDivisor from '../Title Divisor/TitleDivisor';
 import CardItem from '../../api/PlaylistCards';
+
 
 export default function PlaylistCard1({ playSongFromCard }) {
     const [hoveredIndex, setHoveredIndex] = useState(null);
     const [musics, setMusics] = useState([]);
     const [visibleMusics, setVisibleMusics] = useState(4);
 
-    const searchQueries = ['The Less I Know The Better', 'Let It Happen', 'The Beach', 'Reminder'];
+    const searchQueries = useMemo(() => ['The Less I Know The Better', 'Let It Happen', 'The Beach', 'Reminder', 'Borderline', 'Softcore'], []);
 
     useEffect (() => {
         const fetchSpecificMusics = async () => {
@@ -36,7 +37,7 @@ export default function PlaylistCard1({ playSongFromCard }) {
 
         fetchSpecificMusics();
 
-    }, []);
+    }, [searchQueries]);
 
     const toggleMoreMusics = () => {
         if (visibleMusics === 4) {
@@ -44,13 +45,13 @@ export default function PlaylistCard1({ playSongFromCard }) {
         } else {
             setVisibleMusics(4);
         }
-    };
+    }; 
 
     return (
         <>
             <TitleDivisor 
                 title="Você pode gostar"
-                showMore={musics.length > visibleMusics ? toggleMoreMusics : null}
+                showMore={musics.length > visibleMusics ? toggleMoreMusics : toggleMoreMusics}
             />
             
             <div className="main_card_container">

@@ -20,6 +20,7 @@
     cursor: pointer;
     border: none;
     transition: .1s ease-in-out all;
+    border-radius: 8px;
 }
 
 .main_card_container {
@@ -53,6 +54,7 @@
 .playlist_card_container h3 {
     margin: 0;
     margin-left: 1rem;
+    font-size: 0.9rem;
 }
 
 .playlist_card_container p {

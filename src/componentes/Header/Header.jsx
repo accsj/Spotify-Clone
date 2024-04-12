@@ -44,7 +44,6 @@ export default function Header () {
                 headers: { 'Authorization': `Bearer ${token.split('=')[1]}`}})
                 
                 if (response.data.success) {
-                    console.log(username)
                     setUsername(response.data.username)
                 }
                 console.log('Erro ao buscar nome do usuário')
@@ -57,7 +56,6 @@ export default function Header () {
             getusername();
         }
     }, [token, setUsername])
-
 
 
     return (
