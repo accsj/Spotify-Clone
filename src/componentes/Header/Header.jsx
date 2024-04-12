@@ -1,15 +1,18 @@
 import '../Header/Header.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import BtnAuthLogin from '../BtnAuthLogin/BtnAuthLogin';
 import BtnAuthRegister from '../BtnAuthRegister/BtnAuthRegister';
 import useCheckAuthentication from '../../api/Authenticator';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Axios from 'axios';
 
 
 export default function Header () {
     const [menu, setMenu] = useState(false);
     const isAutenticado = useCheckAuthentication();
+    const token = document.cookie.split(';').find(cookie => cookie.trim().startsWith('token'));
+    const [username, setUsername] = useState('');
 
     const ShowMenu = () => {
         setMenu(!menu);
@@ -34,6 +37,28 @@ export default function Header () {
         }, 1000);
     };
 
+    useEffect (() => {
+        const getusername = async () => {
+            try {
+                const response = await Axios.get('http://localhost:5000/getusername', {withCredentials: true,
+                headers: { 'Authorization': `Bearer ${token.split('=')[1]}`}})
+                
+                if (response.data.success) {
+                    console.log(username)
+                    setUsername(response.data.username)
+                }
+                console.log('Erro ao buscar nome do usuário')
+            }
+            catch (error) {
+                console.log(error)
+            }
+        }
+        if (token) {
+            getusername();
+        }
+    }, [token, setUsername])
+
+
 
     return (
         <header className='content'>
@@ -50,7 +75,7 @@ export default function Header () {
                     <button className='user' onClick={ShowMenu}>
                         <div className='user_container'>
                             <i id='user_photo' className='bx bxs-user-circle'></i>
-                            <span className='user_name'>Accsj</span>
+                            <span className='user_name'>{username}</span>
                             <i id='arrow_profile' className='bx bxs-down-arrow'></i>
                         </div>
                     </button>

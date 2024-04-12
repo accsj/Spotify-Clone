@@ -54,7 +54,7 @@ export default function PlaylistCard ({ playSongFromCard }) {
     <>
         {isAutenticado ? (
             <TitleDivisor 
-                title="Suas músicas mais ouvidas"
+                title="Suas músicas curtidas"
                 showMore={musics.length > visibleMusics ? toggleMoreMusics : toggleMoreMusics}
             />
         ) : (

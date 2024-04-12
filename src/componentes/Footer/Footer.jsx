@@ -71,7 +71,6 @@ export default function Footer ({songUrl, imageUrl, title, subtitle }) {
                     withCredentials: true,
                     headers: { 'Authorization': `Bearer ${token.split('=')[1]}`
                 }});
-                console.log(response.data.liked)
             if (response.data.liked) {
                 setIsLiked(true);
             } else {
