@@ -12,6 +12,7 @@ import { toast } from 'react-toastify';
 
 export default function Footer ({songUrl, imageUrl, title, subtitle }) {
     const [isPlaying , setIsPlaying] = useState(false);
+    const [isLiked, setIsLiked] = useState(false);
     const audioRef = useRef(new Audio());
     const [duration, setDuration] = useState(0); 
     const Icon = isPlaying ? BsPauseCircleFill : BsPlayCircleFill;
@@ -29,6 +30,7 @@ export default function Footer ({songUrl, imageUrl, title, subtitle }) {
                 .then(() => {
                     console.log('Reprodução iniciada');
                     setIsPlaying(true);
+                    checkLikedSong();
                 })
                 .catch(error => console.error('Erro ao reproduzir áudio:', error));
         } 
@@ -60,55 +62,51 @@ export default function Footer ({songUrl, imageUrl, title, subtitle }) {
         setIsPlaying(false); 
     };
 
-    const handleLikeSong = async (event) => {
-        event.preventDefault();
-
+    const checkLikedSong = async () => {
         try {
-            const response = await Axios.post('http://localhost:5000/playlist', {
-                songUrl,
-                title,
-                subtitle,
-                imageUrl
-            },{ withCredentials: true, headers: {
-                'Authorization': `Bearer ${token.split('=')[1]}`
-            } });
-
-            if (response.data.success) {
-                toast.success('Login realizado com sucesso!', {
-                    position: "top-left",
-                    autoClose: 5000,
-                    hideProgressBar: true,
-                    closeOnClick: true,
-                    pauseOnHover: false,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "colored",
-                });
+            const response = await Axios.get('http://localhost:5000/checkLikeSong', {
+                params: {
+                    songUrl: songUrl
+                },
+                    withCredentials: true,
+                    headers: { 'Authorization': `Bearer ${token.split('=')[1]}`
+                }});
+                console.log(response.data.liked)
+            if (response.data.liked) {
+                setIsLiked(true);
             } else {
-                toast.error('Erro ao realizar o login', {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: true,
-                    closeOnClick: true,
-                    pauseOnHover: false,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "colored",
-                    });
+                setIsLiked(false);
             }
         } catch (error) {
-            toast.error('Usuário ou senha inválidos', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: false,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-                });
+            console.error('Erro ao verificar música na playlist:', error);
         }
-    }   
+    };
+
+    const handleLikeSong = async () => {
+        try {
+            const response = await Axios.post(
+                'http://localhost:5000/playlist',
+                {
+                    songUrl,
+                    title,
+                    subtitle,
+                    imageUrl
+                },
+                {
+                    withCredentials: true,
+                    headers: { 'Authorization': `Bearer ${token.split('=')[1]}` }
+                }
+            );
+
+            if (response.data.success) {
+                setIsLiked(true);
+            } else {
+                console.error('Erro ao adicionar música aos favoritos:', response.data.message);
+            }
+        } catch (error) {
+            console.error('Erro ao adicionar música aos favoritos:', error);
+        }
+    };
 
 
     return (
@@ -125,7 +123,11 @@ export default function Footer ({songUrl, imageUrl, title, subtitle }) {
                         </a>
                     </div>
                     <div className='likesong' onClick={handleLikeSong}>
-                        <i className='bx bx-heart' ></i>
+                    {isLiked ? (
+                            <i id='NoLike' className='bx bxs-heart' />
+                        ) : (
+                            <i id='Liked' className='bx bx-heart' />
+                        )}
                     </div>
                 </div>
             )}
