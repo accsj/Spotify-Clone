@@ -6,7 +6,6 @@ import CardItem from '../../api/PlaylistCards';
 
 
 export default function PlaylistCard1({ playSongFromCard, setIsPlaying }) {
-    const [hoveredIndex, setHoveredIndex] = useState(null);
     const [musics, setMusics] = useState([]);
     const [playingIndex, setPlayingIndex] = useState(null);
     const [visibleMusics, setVisibleMusics] = useState(4);
@@ -66,17 +65,15 @@ export default function PlaylistCard1({ playSongFromCard, setIsPlaying }) {
             <div className="main_card_container">
                 {musics.slice(0, visibleMusics).map((music, index) => (
                     <CardItem
-                        key={index}
-                        songUrl={music.songurl}
-                        imageUrl={music.imageurl}
-                        title={music.title}
-                        subtitle={music.subtitle}
-                        hoveredIndex={hoveredIndex}
-                        setHoveredIndex={setHoveredIndex}
-                        playSongFromCard={playSongFromCard}
-                        isPlaying={index === playingIndex}
-                        setIsPlayingIndex={() => handleSetIsPlaying(index)}
-                        setIsPlaying={setIsPlaying}
+                    key={index}
+                    songUrl={music.songurl}
+                    imageUrl={music.imageurl}
+                    title={music.title}
+                    subtitle={music.subtitle}
+                    isPlaying={index === playingIndex}
+                    setIsPlayingIndex={() => handleSetIsPlaying(index)}
+                    playSongFromCard={playSongFromCard}
+                    setIsPlaying={setIsPlaying}
                     />
                 ))}
             </div>

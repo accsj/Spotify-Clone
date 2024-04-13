@@ -17,6 +17,7 @@ export default function PlaylistCard({ playSongFromCard, musics, setIsPlaying })
             setPlayingIndex(null);
         } else {
             setPlayingIndex(index);
+
         }
     };
     return (

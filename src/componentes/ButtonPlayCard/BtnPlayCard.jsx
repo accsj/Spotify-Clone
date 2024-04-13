@@ -3,17 +3,14 @@ import '../ButtonPlayCard/BtnPlayCard.css';
 
 export default function BtnPlayCard({ playSongFromCard, songUrl, imageUrl, title, subtitle, isPlaying, setIsPlaying, setIsPlayingIndex }) {
 
-
     const handlePlayButtonClick = () => {
         if (isPlaying) {
-            setIsPlaying(false)
-            setIsPlayingIndex(false)
-        }
-        else {
-            setIsPlaying(true)
-            setIsPlayingIndex(true)
+            setIsPlaying(false);
+        } else {
+            setIsPlaying(true);
             playSongFromCard(songUrl, imageUrl, title, subtitle);
         }
+        setIsPlayingIndex(isPlaying ? null : true);
     };
 
     return (
