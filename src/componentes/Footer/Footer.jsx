@@ -5,19 +5,19 @@ import { BsPlayCircleFill, BsPauseCircleFill } from "react-icons/bs";
 import { AiFillStepForward, AiFillStepBackward } from "react-icons/ai";
 import { useState, useRef, useEffect } from 'react'; 
 import ProgressBar from '../ProgressBar/ProgressBar';
+import VolumeSlider from '../Slider/Slider';
 import Axios from 'axios';
-import { toast } from 'react-toastify';
 
-
-
-export default function Footer ({songUrl, imageUrl, title, subtitle }) {
+export default function Footer ({songUrl, imageUrl, title, subtitle, musics }) {
     const [isPlaying , setIsPlaying] = useState(false);
     const [isLiked, setIsLiked] = useState(false);
     const audioRef = useRef(new Audio());
     const [duration, setDuration] = useState(0); 
+    const [currentIndex, setCurrentIndex] = useState(0);
     const Icon = isPlaying ? BsPauseCircleFill : BsPlayCircleFill;
     const token = document.cookie.split(';').find(cookie => cookie.trim().startsWith('token'));
-
+    
+    
     useEffect(() => {
         const audio = audioRef.current;
         audio.src = songUrl;
@@ -39,6 +39,7 @@ export default function Footer ({songUrl, imageUrl, title, subtitle }) {
             audio.removeEventListener('loadedmetadata', () => {});
         };
     }, [songUrl]);
+    
 
     useEffect(() => {
         const audio = audioRef.current;
@@ -59,7 +60,28 @@ export default function Footer ({songUrl, imageUrl, title, subtitle }) {
     };
 
     const handleEnded = () => {
-        setIsPlaying(false); 
+        setIsPlaying(false);
+        handleNext();
+    };
+
+    const handleNext = () => {
+        if (currentIndex < musics.length - 1) { 
+            const newIndex = currentIndex + 1; 
+            setCurrentIndex(newIndex); 
+            audioRef.current.src = musics[newIndex].musics; 
+            audioRef.current.play(); 
+            setIsPlaying(true); 
+        }
+    };
+    
+    const handlePrevious = () => {
+        if (currentIndex > 0) { 
+            const newIndex = currentIndex - 1; 
+            setCurrentIndex(newIndex); 
+            audioRef.current.src = musics[newIndex].musics; 
+            audioRef.current.play(); 
+            setIsPlaying(true); 
+        }
     };
 
     const checkLikedSong = async () => {
@@ -107,7 +129,6 @@ export default function Footer ({songUrl, imageUrl, title, subtitle }) {
         }
     };
 
-
     return (
         <footer className='footer'>
             {songUrl && (
@@ -133,11 +154,18 @@ export default function Footer ({songUrl, imageUrl, title, subtitle }) {
             {songUrl && (
                 <div className='player'>
                     <div className='playerbuttons'>
-                        <AiFillStepBackward className='btn_skip_previous'/>
+                        <AiFillStepBackward className='btn_skip_previous' onClick={handlePrevious}/>
                         <Icon className='btn_play' onClick={handlePlayPause}/>
-                        <AiFillStepForward className='btn_skip_next'/>
+                        <AiFillStepForward className='btn_skip_next' onClick={handleNext}/>
                     </div>
                     <ProgressBar audioRef={audioRef} duration={duration} onEnded={handleEnded} />
+                </div>
+            )}
+            {songUrl && (
+                <div className='volume-container'>
+                    <div className='volume'>
+                        <VolumeSlider audioRef={audioRef}/>
+                    </div>
                 </div>
             )}
         </footer>

@@ -1,46 +1,16 @@
 import '../PlaylistCard/PlaylistCard.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import CardItem from '../../api/PlaylistCards';
 import TitleDivisor from '../Title Divisor/TitleDivisor';
-import Axios from 'axios';
-import { useEffect } from 'react';
 import useCheckAuthentication from '../../api/Authenticator.jsx';
 
 
-export default function PlaylistCard ({ playSongFromCard }) {
+export default function PlaylistCard ({ playSongFromCard, musics}) {
     const [hoveredIndex, setHoveredIndex] = useState(null);
-    const [musics, setMusics] = useState([]);
     const [visibleMusics, setVisibleMusics] = useState(4);
-    const token = document.cookie.split(';').find(cookie => cookie.trim().startsWith('token'));
     const isAutenticado = useCheckAuthentication();
+    const [songs, setSongs] = useState([]);
 
-
-    useEffect(() => {
-        const fetchMusics = async () => {
-            try {
-                let response;
-                if (isAutenticado) {
-                    response = await Axios.get('http://localhost:5000/listyoursongs', {
-                        withCredentials: true,
-                        headers: { 'Authorization': `Bearer ${token.split('=')[1]}` }
-                    });
-                } else {
-                    response = await Axios.get('http://localhost:5000/musics');
-                    console.log(response.data)
-                }
-                if (response.data.success) {
-                    const shuffledMusics = response.data.data.sort(() => Math.random() - 0.5);
-                    setMusics(shuffledMusics);
-                } else {
-                    console.error('Erro ao buscar músicas:', response.data.message);
-                }
-            } catch (error) {
-                console.error('Erro ao buscar músicas:', error);
-            }
-        };
-
-        fetchMusics();
-    }, [isAutenticado, token]);
 
     const toggleMoreMusics = () => {
         if (visibleMusics === 4) {

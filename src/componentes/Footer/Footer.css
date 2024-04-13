@@ -8,6 +8,7 @@
     bottom: 0;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .CurrentSong {
@@ -90,7 +91,6 @@
 .btn_skip_next {
     background-color: transparent;
     border: none;
-    margin-left: 2rem;
     transition: ease-in-out;
     cursor: pointer;
     font-size: 2rem;
@@ -104,7 +104,6 @@
 .btn_skip_previous {
     background-color: transparent;
     border: none;
-    margin-right: 2rem;
     transition: .1s ease-in-out;
     cursor: pointer;
     font-size: 2rem;
@@ -117,10 +116,11 @@
 
 .playerbuttons {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     text-align: center;
     margin-left: 2.5rem;
+    position: relative;
 }
 
 .current-time {
@@ -155,20 +155,93 @@
 .progressbar::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 20px; 
-    height: 20px; 
+    width: 0px; 
+    height: 0px;
+    opacity: 0;
+    background-color: #1db954; 
+    border-radius: 50%; 
+    cursor: pointer; 
+}
+
+.progressbar:hover::-webkit-slider-thumb {
+    width: 12px; 
+    height: 12px; 
+    opacity: 1;
     background-color: #1db954; 
     border-radius: 50%; 
     cursor: pointer; 
 }
 
 .progressbar::-moz-range-thumb {
-    width: 10px;
-    height: 10px; 
+    width: 12px;
+    height: 12px; 
     background-color: #f4f4f4; 
     border-radius: 50%; 
     cursor: pointer; 
 }
+
+.volume {
+    margin-right: 4rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn_volume {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.btn_volume:hover {
+    transform: scale(1.1);
+    transition: all .1s ease-in-out;
+}
+
+.volume-slider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sliderprogress {
+    -webkit-appearance: none;
+    appearance: none;
+    font-size: 0.7rem;
+    appearance: none;
+    height: 4px; 
+    background-color: #f4f4f4; 
+    border-radius: 5px; 
+    outline: none; 
+    transition: .1s ease-in-out all;
+}
+
+.sliderprogress::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 0px; 
+    height: 0px;
+    opacity: 0;
+    background-color: #1db954; 
+}
+
+.sliderprogress:hover::-webkit-slider-thumb {
+    width: 12px; 
+    height: 12px; 
+    opacity: 1;
+    background-color: #1db954; 
+    border-radius: 50%; 
+    cursor: pointer; 
+}
+
+.sliderprogress::-moz-range-thumb{
+    width: 12px;
+    height: 12px; 
+    background-color: #f4f4f4; 
+    border-radius: 50%; 
+    cursor: pointer; 
+}
+
 
 
 
