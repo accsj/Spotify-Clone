@@ -1,40 +1,32 @@
-import '../PlaylistCard/PlaylistCard.css';
-import { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import CardItem from '../../api/PlaylistCards';
 import TitleDivisor from '../Title Divisor/TitleDivisor';
 import useCheckAuthentication from '../../api/Authenticator.jsx';
 
-
-export default function PlaylistCard ({ playSongFromCard, musics}) {
-    const [hoveredIndex, setHoveredIndex] = useState(null);
+export default function PlaylistCard({ playSongFromCard, musics, setIsPlaying }) {
     const [visibleMusics, setVisibleMusics] = useState(4);
+    const [playingIndex, setPlayingIndex] = useState(null);
     const isAutenticado = useCheckAuthentication();
-    const [songs, setSongs] = useState([]);
-
 
     const toggleMoreMusics = () => {
-        if (visibleMusics === 4) {
-            setVisibleMusics(prevVisibleMusics => prevVisibleMusics + 4);
-        } else {
-            setVisibleMusics(4);
-        }
+        setVisibleMusics(prevVisibleMusics => prevVisibleMusics === 4 ? 8 : 4);
     };
 
+    const handleSetIsPlaying = (index) => {
+        if (index === playingIndex) {
+            setPlayingIndex(null);
+        } else {
+            setPlayingIndex(index);
+        }
+    };
     return (
-    <>
-        {isAutenticado ? (
+        <>
             <TitleDivisor 
-                title="Suas músicas curtidas"
+                title={isAutenticado ? "Suas músicas curtidas" : "Descubra novas músicas"}
                 showMore={musics.length > visibleMusics ? toggleMoreMusics : toggleMoreMusics}
             />
-        ) : (
-            <TitleDivisor 
-            title="Descubra novas músicas"
-            showMore={musics.length > visibleMusics ? toggleMoreMusics : toggleMoreMusics}
-        />
-        )}
-        
-        <div className="main_card_container">
+            
+            <div className="main_card_container">
                 {musics.slice(0, visibleMusics).map((music, index) => (
                     <CardItem
                         key={index}
@@ -42,13 +34,13 @@ export default function PlaylistCard ({ playSongFromCard, musics}) {
                         imageUrl={music.imageurl}
                         title={music.title}
                         subtitle={music.subtitle}
-                        hoveredIndex={hoveredIndex}
-                        setHoveredIndex={setHoveredIndex}
+                        isPlaying={index === playingIndex}
+                        setIsPlayingIndex={() => handleSetIsPlaying(index)}
                         playSongFromCard={playSongFromCard}
+                        setIsPlaying={setIsPlaying}
                     />
                 ))}
-        </div>
-    </>
-    )
+            </div>
+        </>
+    );
 }
-

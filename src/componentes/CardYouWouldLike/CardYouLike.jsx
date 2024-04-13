@@ -5,12 +5,13 @@ import TitleDivisor from '../Title Divisor/TitleDivisor';
 import CardItem from '../../api/PlaylistCards';
 
 
-export default function PlaylistCard1({ playSongFromCard }) {
+export default function PlaylistCard1({ playSongFromCard, setIsPlaying }) {
     const [hoveredIndex, setHoveredIndex] = useState(null);
     const [musics, setMusics] = useState([]);
+    const [playingIndex, setPlayingIndex] = useState(null);
     const [visibleMusics, setVisibleMusics] = useState(4);
 
-    const searchQueries = useMemo(() => ['The Less I Know The Better', 'Let It Happen', 'The Beach', 'Reminder', 'Borderline', 'Softcore'], []);
+    const searchQueries = useMemo(() => ['The Less I Know The Better', 'End of Beginning', 'The Beach', 'Telephones','Softcore'], []);
 
     useEffect (() => {
         const fetchSpecificMusics = async () => {
@@ -47,6 +48,14 @@ export default function PlaylistCard1({ playSongFromCard }) {
         }
     }; 
 
+    const handleSetIsPlaying = (index) => {
+        if (index === playingIndex) {
+            setPlayingIndex(null);
+        } else {
+            setPlayingIndex(index);
+        }
+    };
+
     return (
         <>
             <TitleDivisor 
@@ -65,6 +74,9 @@ export default function PlaylistCard1({ playSongFromCard }) {
                         hoveredIndex={hoveredIndex}
                         setHoveredIndex={setHoveredIndex}
                         playSongFromCard={playSongFromCard}
+                        isPlaying={index === playingIndex}
+                        setIsPlayingIndex={() => handleSetIsPlaying(index)}
+                        setIsPlaying={setIsPlaying}
                     />
                 ))}
             </div>

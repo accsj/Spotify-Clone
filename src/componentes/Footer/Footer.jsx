@@ -8,8 +8,7 @@ import ProgressBar from '../ProgressBar/ProgressBar';
 import VolumeSlider from '../Slider/Slider';
 import Axios from 'axios';
 
-export default function Footer ({songUrl, imageUrl, title, subtitle, musics }) {
-    const [isPlaying , setIsPlaying] = useState(false);
+export default function Footer ({songUrl, imageUrl, title, subtitle, musics, isPlaying, setIsPlaying }) {
     const [isLiked, setIsLiked] = useState(false);
     const audioRef = useRef(new Audio());
     const [duration, setDuration] = useState(0); 
@@ -19,6 +18,26 @@ export default function Footer ({songUrl, imageUrl, title, subtitle, musics }) {
     
     
     useEffect(() => {
+        const checkLikedSong = async () => {
+            try {
+                const response = await Axios.get('http://localhost:5000/checkLikeSong', {
+                    params: {
+                        songUrl: songUrl
+                    },
+                    withCredentials: true,
+                    headers: { 'Authorization': `Bearer ${token.split('=')[1]}`
+                    }
+                });
+                if (response.data.liked) {
+                    setIsLiked(true);
+                } else {
+                    setIsLiked(false);
+                }
+            } catch (error) {
+                console.error('Erro ao verificar música na playlist:', error);
+            }
+        };
+
         const audio = audioRef.current;
         audio.src = songUrl;
         audio.addEventListener('loadedmetadata', () => {
@@ -38,8 +57,7 @@ export default function Footer ({songUrl, imageUrl, title, subtitle, musics }) {
         return () => {
             audio.removeEventListener('loadedmetadata', () => {});
         };
-    }, [songUrl]);
-    
+    }, [songUrl, setIsPlaying, token]);
 
     useEffect(() => {
         const audio = audioRef.current;
@@ -53,7 +71,6 @@ export default function Footer ({songUrl, imageUrl, title, subtitle, musics }) {
             audio.pause();
         }
     }, [isPlaying]);
-
 
     const handlePlayPause = () => {
         setIsPlaying(!isPlaying);
@@ -81,25 +98,6 @@ export default function Footer ({songUrl, imageUrl, title, subtitle, musics }) {
             audioRef.current.src = musics[newIndex].musics; 
             audioRef.current.play(); 
             setIsPlaying(true); 
-        }
-    };
-
-    const checkLikedSong = async () => {
-        try {
-            const response = await Axios.get('http://localhost:5000/checkLikeSong', {
-                params: {
-                    songUrl: songUrl
-                },
-                    withCredentials: true,
-                    headers: { 'Authorization': `Bearer ${token.split('=')[1]}`
-                }});
-            if (response.data.liked) {
-                setIsLiked(true);
-            } else {
-                setIsLiked(false);
-            }
-        } catch (error) {
-            console.error('Erro ao verificar música na playlist:', error);
         }
     };
 

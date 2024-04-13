@@ -21,6 +21,15 @@
 .btn_play_card i {
     position: relative;
     color: black;
-    font-size: 1.5rem;
-    margin-left: 0.1rem;
 }
+
+#btn_play_card_i {
+    margin-left: 0.1rem;
+    font-size: 1.5rem;
+}
+
+#btn_pause_card_i {
+    font-size: 1.5rem;
+    color: black;
+}
+

@@ -13,14 +13,16 @@ export default function HomePage () {
     const [title, setTitle] = useState('');
     const [subtitle, setSubtitle] = useState('');
     const [musics, setMusics] = useState([]);
+    const [isPlaying , setIsPlaying] = useState(false);
     const isAutenticado = useCheckAuthentication();
     const token = document.cookie.split(';').find(cookie => cookie.trim().startsWith('token'));
 
-    const playSongFromCard = (url, image, title, subtitle) => {
-        setSongUrl(url);
+    const playSongFromCard = (songUrl, image, title, subtitle) => {
+        setSongUrl(songUrl);
         setImageUrl(image)
         setTitle(title)
         setSubtitle(subtitle)
+        setIsPlaying(true);
     };
 
     useEffect(() => {
@@ -55,8 +57,8 @@ export default function HomePage () {
         <main className="main_container">
             <Sidebar />
             <Header />
-            <PlaylistContent playSongFromCard={playSongFromCard} musics={musics} />
-            <Footer songUrl={songUrl} imageUrl={imageUrl} title={title} subtitle={subtitle} musics={musics}/>
+            <PlaylistContent playSongFromCard={playSongFromCard} musics={musics} isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
+            <Footer songUrl={songUrl} imageUrl={imageUrl} title={title} subtitle={subtitle} musics={musics} isPlaying={isPlaying} setIsPlaying={setIsPlaying}/>
         </main>
         </>
     );
