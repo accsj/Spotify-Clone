@@ -16,7 +16,6 @@ export default function Footer ({songUrl, imageUrl, title, subtitle, musics, isP
     const Icon = isPlaying ? BsPauseCircleFill : BsPlayCircleFill;
     const token = document.cookie.split(';').find(cookie => cookie.trim().startsWith('token'));
     
-    
     useEffect(() => {
         const checkLikedSong = async () => {
             try {
