@@ -14,6 +14,7 @@ export default function LoginForm () {
     const navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
 
 
     const handleClickLogin = async (event) => {
@@ -122,6 +123,11 @@ export default function LoginForm () {
         handleClickLoginRegister(username, email, sub);
     } 
 
+    const togglePasswordVisibility = (event) => {
+        event.preventDefault(); // Impede o comportamento padrão do botão
+        setShowPassword(!showPassword);
+    };
+    
     return (
         <section className="login_container_form">
             <div className="title_auth">
@@ -145,9 +151,9 @@ export default function LoginForm () {
                 </div>
 
                 <div className='input_box'>
-                    <label htmlFor=""><h4>Senha</h4><input type="password" name='password' placeholder='Senha' required onChange={(e) => setPassword(e.target.value)}/></label>
-                    <button className='hideshow'>
-                        <i class='bx bx-show-alt'></i>
+                    <label htmlFor=""><h4>Senha</h4><input type={showPassword ? "text" : "password"} name='password' placeholder='Senha' required onChange={(e) => setPassword(e.target.value)}/></label>
+                    <button className='hideshow' onClick={togglePasswordVisibility}>
+                    <i className={showPassword ? 'bx bx-hide' : 'bx bx-show-alt'}></i>
                     </button>
                 </div>
 
