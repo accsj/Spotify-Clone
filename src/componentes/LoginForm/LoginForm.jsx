@@ -124,10 +124,10 @@ export default function LoginForm () {
     } 
 
     const togglePasswordVisibility = (event) => {
-        event.preventDefault(); // Impede o comportamento padrão do botão
+        event.preventDefault(); 
         setShowPassword(!showPassword);
     };
-    
+
     return (
         <section className="login_container_form">
             <div className="title_auth">
