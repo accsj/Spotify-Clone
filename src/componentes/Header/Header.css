@@ -2,6 +2,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-left: 0%;
+    margin-right: 0%;
+}
+
+.header_content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    width: 95%;
 }
 
 .arrow_container {
@@ -11,7 +21,7 @@
     align-items: left;
     text-align: left;
     margin-top: 1rem;
-    margin-right: 50%;
+    margin-right: 68%;
     gap: 0.8rem;
 }
 

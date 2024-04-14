@@ -3,6 +3,10 @@
     box-sizing: border-box;
 }
 
+.main_container_login {
+    background-color: #222222;
+}
+
 .login_container_form {
     display: flex;
     justify-content: center;
@@ -14,11 +18,11 @@
     margin-top: 2rem;
     width: 850px;
     margin-left: 23%;
-    
 }
 .title_auth {
     font-size: 2rem;
     margin-top: 2rem;
+    cursor: default;
 }
 
 .loginform {

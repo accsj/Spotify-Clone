@@ -3,16 +3,36 @@
     justify-content: top;
     align-items: center;
     flex-direction: column;
-    background-color: #000000;
-    width: 301px;
+    width: 290px;
     height: 100%;
     display: block;
     position: fixed;
     z-index: 2;
+    margin: 0rem 1rem 0rem 1rem;
+    border-radius: 3%;
 }
 
+.sidebar_options {
+    background-color: #222222;
+    margin-bottom: 0.5rem;
+    border-radius: 3%;
+}
+
+.sidebar_middle_options {
+    background-color: #222222;
+    height: 62%;
+    border-radius: 3%;
+    display: flex;
+    justify-content: top;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+    padding-top: 0.5rem;
+}
+
+
 .SpotifyLogo {
-    padding: 1rem;
+    padding: 1rem 1rem 0.5rem 1rem;
     padding-right: 6rem;
     cursor: pointer;
 }
@@ -44,9 +64,8 @@
 }
 
 .middle_options {
-    flex-direction: column;
     padding-left: 1.2rem;
-    padding-bottom: 1rem;
+    padding-bottom: 0.5rem;
 }
 
 .options_middle {
@@ -101,14 +120,15 @@
 .playlists {
     font-size: 2rem;
     width: 281px;
-    height: 220px;
+    height: auto;
     flex-direction: column;
     padding-left: 1.2rem;
 }
 
 .divisor {
-    margin-right: 25px;
-    border-top: 0.1px solid gray;
+    margin-right: 20px;
+    border-top: 1px solid gray;
+    margin-left: 20px;
 }
 
 
@@ -127,3 +147,16 @@
 .textplaylist:hover {
     color: white;
 }
+
+.btn_add_playlist {
+    font-size: 2rem;
+    position: absolute;
+    margin-left: 80%;
+}
+
+.btn_add_playlist:hover {
+    color: white;
+    transform: scale(1.1);
+    transition: all .1s ease-in-out;
+    cursor: pointer;
+}   

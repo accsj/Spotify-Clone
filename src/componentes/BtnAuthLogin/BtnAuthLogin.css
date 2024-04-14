@@ -1,10 +1,10 @@
 .btn_login {
     border: none;
     background-color: white;
-    border-radius: 20px;
+    border-radius: 50px;
     margin-top: 1rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding-left: 1.6rem;
+    padding-right: 1.6rem;
     cursor: pointer;
     transition: .1s ease-in-out all;
 }

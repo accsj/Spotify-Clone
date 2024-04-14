@@ -56,7 +56,6 @@ export default function HomePage () {
         <>
         <main className="main_container">
             <Sidebar />
-            <Header />
             <PlaylistContent playSongFromCard={playSongFromCard} musics={musics} isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
             <Footer songUrl={songUrl} imageUrl={imageUrl} title={title} subtitle={subtitle} musics={musics} isPlaying={isPlaying} setIsPlaying={setIsPlaying}/>
         </main>

@@ -152,9 +152,9 @@ export default function LoginForm () {
 
                 <div className='input_box'>
                     <label htmlFor=""><h4>Senha</h4><input type={showPassword ? "text" : "password"} name='password' placeholder='Senha' required onChange={(e) => setPassword(e.target.value)}/></label>
-                    <button className='hideshow' onClick={togglePasswordVisibility}>
+                    <div className='hideshow' onClick={togglePasswordVisibility}>
                     <i className={showPassword ? 'bx bx-hide' : 'bx bx-show-alt'}></i>
-                    </button>
+                    </div>
                 </div>
 
                 <button className='btn_submit'>

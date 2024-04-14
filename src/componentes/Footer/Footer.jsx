@@ -127,9 +127,10 @@ export default function Footer ({songUrl, imageUrl, title, subtitle, musics, isP
     };
 
     return (
-        <footer className='footer'>
-            {songUrl && (
-                <div className='CurrentSong'>
+        <>
+        {songUrl && (
+            <footer className='footer'>
+            <div className='CurrentSong'>
                     <img className='album' src={imageUrl || CurrentSong} alt="CurrentSong" />
                     <div className='info'>
                         <a className='NameSong' href='/'>
@@ -147,8 +148,6 @@ export default function Footer ({songUrl, imageUrl, title, subtitle, musics, isP
                         )}
                     </div>
                 </div>
-            )}
-            {songUrl && (
                 <div className='player'>
                     <div className='playerbuttons'>
                         <AiFillStepBackward className='btn_skip_previous' onClick={handlePrevious}/>
@@ -157,14 +156,13 @@ export default function Footer ({songUrl, imageUrl, title, subtitle, musics, isP
                     </div>
                     <ProgressBar audioRef={audioRef} duration={duration} onEnded={handleEnded} />
                 </div>
-            )}
-            {songUrl && (
                 <div className='volume-container'>
                     <div className='volume'>
                         <VolumeSlider audioRef={audioRef}/>
                     </div>
                 </div>
-            )}
-        </footer>
+            </footer>
+        )}
+    </>
     )
 }

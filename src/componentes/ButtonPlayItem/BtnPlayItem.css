@@ -5,13 +5,13 @@
     margin-left: 18rem;
     position: absolute;
     display: flex;
-    padding: 0.5rem;
+    padding: 0.3rem;
     cursor: pointer;
-    transition: .1s ease-in-out all;
 }
 
 .btn_play_item:hover {
     transform: scale(1.1);
+    transition: all .1s ease-in-out;
 }
 
 .btn_play_item i {

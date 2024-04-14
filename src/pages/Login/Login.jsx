@@ -7,7 +7,7 @@ export default function LoginPage () {
 
     return (
         <>
-        <main className="main_container">
+        <main className="main_container_login">
             <HeaderAuth />
             <LoginForm />
         </main>

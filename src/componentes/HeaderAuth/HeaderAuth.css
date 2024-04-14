@@ -3,11 +3,10 @@
     justify-content: left;
     align-items: left;
     background: #121212;
-    padding: 2rem;
+    padding: 1rem;
 }
 
 #SpotifyLogo {
-    width: 130px;
-    height: 42px;
     margin-left: 1rem;
+    cursor: pointer;
 }

@@ -3,13 +3,14 @@
     align-items: left;
     justify-content: left;
     text-align: left;
-    margin-top: 2rem;
-    margin-right: 0%;
-    margin-left: 20%;
-    height: 2000px;
+    margin-right: 1%;
+    margin-left: 21%;
     flex-direction: column;
     cursor: default;
-    background: linear-gradient(#222222, #121212,  #333333);
+    background: linear-gradient(to bottom, #169141, #222222, #121212, #191414);
+    margin-top: 1rem;
+    border-radius: 0.5%;
+    overflow-y: auto;
 }
 
 .playlist_content h1 {

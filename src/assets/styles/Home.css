@@ -1,13 +1,12 @@
 * {
     text-decoration: none;
     color: rgb(228, 212, 212);
-
 }
 
 body {
     font-family: 'DM Sans', sans-serif;
+    background-color: #000;
     margin: 0;
-    background: linear-gradient(#222222, #202020);
 }
 
 

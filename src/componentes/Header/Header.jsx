@@ -60,6 +60,7 @@ export default function Header () {
 
     return (
         <header className='content'>
+            <div className="header_content">
             <div className='arrow_container'>
                 <button className='btn_arrow_previous'>
                     <i className='bx bx-chevron-left'></i>
@@ -91,6 +92,7 @@ export default function Header () {
                     <BtnAuthLogin title='Entrar'/>
                 </div>
             )}
+            </div>
         </header>
     )
 }
