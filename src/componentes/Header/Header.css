@@ -1,17 +1,16 @@
 .content {
-    display: flex;
+    display: block;
     align-items: center;
     justify-content: center;
-    margin-left: 0%;
-    margin-right: 0%;
 }
 
 .header_content {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 1rem;
-    width: 95%;
+    margin: 1rem;
+    width: 98%;
+    margin-bottom: 2rem;
 }
 
 .arrow_container {
@@ -80,7 +79,7 @@
     padding-right: 5rem;
     margin-top: 4rem;
     position: absolute;
-    z-index: 10;
+    z-index: 2;
 }
 
 .profile_container h3 {
@@ -121,6 +120,7 @@
     padding-right: 2rem;
     cursor: pointer;
     transition: .1s ease-in-out all;
+    position: absolute;
 }
 
 .login_container {
@@ -145,6 +145,7 @@
     cursor: pointer;
     transition: .1s ease-in-out all;
     font-size: 1rem;
+    margin-right: 8rem;
 }
 
 .btn_registro:hover {

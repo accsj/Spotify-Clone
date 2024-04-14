@@ -103,7 +103,6 @@
     padding-left: 6rem;
     padding-right: 6rem;
     margin-top: 2rem;
-    transition: .1s ease-in-out all smooth;
 }
 
 .btn_submit h3 {
@@ -112,6 +111,8 @@
 
 .btn_submit:hover {
     transform: scale(1.1);
+    transition: all .1s ease-in-out smooth;
+    cursor: pointer;
 }
 
 .recovery {

@@ -10,7 +10,6 @@
     background: linear-gradient(to bottom, #169141, #222222, #121212, #191414);
     margin-top: 1rem;
     border-radius: 0.5%;
-    overflow-y: auto;
 }
 
 .playlist_content h1 {
