@@ -13,7 +13,6 @@ function SearchBox ({onSearch, searchResults}) {
     const handleSubmit = (event) => {
         event.preventDefault();
         onSearch(searchItem)
-        console.log("Formulário enviado")
     }
 
     const handleKeyDown = (event) => {

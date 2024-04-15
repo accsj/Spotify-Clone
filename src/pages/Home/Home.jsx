@@ -34,11 +34,9 @@ export default function HomePage () {
                 searchItem: searchItem
             } ,{ withCredentials: true })
             setSearchResults(response.data)
-            console.log("Sua pesquisa resultou nisso: ", response.data)
         }
         catch (error) {
-            console.log(searchItem)
-            console.log("Ocorreu um erro ao pesquisar a música")
+            console.log("Ocorreu um erro ao pesquisar a música", error)
         }
     }
 
@@ -53,7 +51,6 @@ export default function HomePage () {
 
     const handlePlayPause = () => {
         setIsPlaying(!isPlaying);
-        console.log("Pause ativado", isPlaying)
     }
 
     useEffect(() => {
@@ -86,7 +83,6 @@ export default function HomePage () {
         if (songUrl) {
             audio.play()
                 .then(() => {
-                    console.log('Reprodução iniciada');
                     setIsPlaying(true);
                     checkLikedSong();
                 })
