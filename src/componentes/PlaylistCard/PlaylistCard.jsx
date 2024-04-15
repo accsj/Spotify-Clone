@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import CardItem from '../../api/PlaylistCards';
-import TitleDivisor from '../Title Divisor/TitleDivisor';
+import CardItem from '../../api/CardItem.jsx';
+import TitleDivisor from '../Title Divisor/TitleDivisor.jsx';
 import useCheckAuthentication from '../../api/Authenticator.jsx';
 
-export default function PlaylistCard({ playSongFromCard, musics, setIsPlaying }) {
+export default function PlaylistCard({ playSongFromCard, musics, isPlaying, setIsPlaying, handlePlayPause }) {
     const [visibleMusics, setVisibleMusics] = useState(4);
     const [playingIndex, setPlayingIndex] = useState(null);
     const isAutenticado = useCheckAuthentication();
@@ -15,11 +15,13 @@ export default function PlaylistCard({ playSongFromCard, musics, setIsPlaying })
     const handleSetIsPlaying = (index) => {
         if (index === playingIndex) {
             setPlayingIndex(null);
+            setIsPlaying(false);
         } else {
+            setIsPlaying(true);
             setPlayingIndex(index);
-
         }
     };
+
     return (
         <>
             <TitleDivisor 
@@ -35,10 +37,12 @@ export default function PlaylistCard({ playSongFromCard, musics, setIsPlaying })
                         imageUrl={music.imageurl}
                         title={music.title}
                         subtitle={music.subtitle}
-                        isPlaying={index === playingIndex}
+                        isPlaying={index === playingIndex && isPlaying}
                         setIsPlayingIndex={() => handleSetIsPlaying(index)}
                         playSongFromCard={playSongFromCard}
                         setIsPlaying={setIsPlaying}
+                        handlePlayPause={handlePlayPause}
+
                     />
                 ))}
             </div>

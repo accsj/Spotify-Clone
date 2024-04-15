@@ -1,7 +1,8 @@
 import React from 'react';
 import '../ButtonPlayCard/BtnPlayCard.css';
 
-export default function BtnPlayCard({ playSongFromCard, songUrl, imageUrl, title, subtitle, isPlaying, setIsPlaying, setIsPlayingIndex }) {
+export default function BtnPlayCard({ playSongFromCard, songUrl, imageUrl, title, subtitle, isPlaying, setIsPlaying, setIsPlayingIndex, handlePlayPause }) {
+
 
     const handlePlayButtonClick = () => {
         if (isPlaying) {

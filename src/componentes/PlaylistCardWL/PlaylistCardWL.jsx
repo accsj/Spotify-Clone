@@ -1,11 +1,11 @@
-import '../../componentes/PlaylistCard/PlaylistCard.css';
+import '../PlaylistCard/PlaylistCard.css';
 import React, { useState, useEffect, useMemo } from 'react';
 import Axios from 'axios';
 import TitleDivisor from '../Title Divisor/TitleDivisor';
-import CardItem from '../../api/PlaylistCards';
+import CardItem from '../../api/CardItem';
 
 
-export default function PlaylistCard1({ playSongFromCard, setIsPlaying }) {
+export default function PlaylistCard1({ playSongFromCard, isPlaying, setIsPlaying, handlePlayPause }) {
     const [musics, setMusics] = useState([]);
     const [playingIndex, setPlayingIndex] = useState(null);
     const [visibleMusics, setVisibleMusics] = useState(4);
@@ -50,7 +50,9 @@ export default function PlaylistCard1({ playSongFromCard, setIsPlaying }) {
     const handleSetIsPlaying = (index) => {
         if (index === playingIndex) {
             setPlayingIndex(null);
+            setIsPlaying(false);
         } else {
+            setIsPlaying(true);
             setPlayingIndex(index);
         }
     };
@@ -70,10 +72,11 @@ export default function PlaylistCard1({ playSongFromCard, setIsPlaying }) {
                     imageUrl={music.imageurl}
                     title={music.title}
                     subtitle={music.subtitle}
-                    isPlaying={index === playingIndex}
+                    isPlaying={index === playingIndex && isPlaying}
                     setIsPlayingIndex={() => handleSetIsPlaying(index)}
                     playSongFromCard={playSongFromCard}
                     setIsPlaying={setIsPlaying}
+                    handlePlayPause={handlePlayPause}
                     />
                 ))}
             </div>

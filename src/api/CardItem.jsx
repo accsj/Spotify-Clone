@@ -1,8 +1,9 @@
 import { useState } from "react";
 import BtnPlayCard from "../componentes/ButtonPlayCard/BtnPlayCard";
 
-function CardItem({imageUrl, title, subtitle, songUrl, playSongFromCard, isPlaying, setIsPlaying, setIsPlayingIndex}) {
+function CardItem({imageUrl, title, subtitle, songUrl, playSongFromCard, isPlaying, setIsPlaying, setIsPlayingIndex, handlePlayPause}) {
     const [isHovered, setIsHovered] = useState(false);
+    
 
     return (
         <button className='playlist_card_container'
@@ -15,7 +16,7 @@ function CardItem({imageUrl, title, subtitle, songUrl, playSongFromCard, isPlayi
         <h3>{title}</h3>
         <p>{subtitle}</p>
         { isHovered && (
-            <BtnPlayCard songUrl={songUrl} playSongFromCard={playSongFromCard} imageUrl={imageUrl} title={title} subtitle={subtitle} isPlaying={isPlaying} setIsPlaying={setIsPlaying} setIsPlayingIndex={setIsPlayingIndex}/>
+            <BtnPlayCard songUrl={songUrl} playSongFromCard={playSongFromCard} imageUrl={imageUrl} title={title} subtitle={subtitle} isPlaying={isPlaying} setIsPlaying={setIsPlaying} setIsPlayingIndex={setIsPlayingIndex} handlePlayPause={handlePlayPause}/>
         )}
     </button>
     )

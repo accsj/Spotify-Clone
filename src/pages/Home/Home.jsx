@@ -3,7 +3,7 @@ import Sidebar from '../../componentes/Sidebar/Sidebar';
 import Header from '../../componentes/Header/Header';
 import PlaylistContent from '../../componentes/PlaylistContent/PlaylistContent';
 import Footer from '../../componentes/Footer/Footer';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import useCheckAuthentication from '../../api/Authenticator';
 import Axios from 'axios';
 
@@ -14,8 +14,11 @@ export default function HomePage () {
     const [subtitle, setSubtitle] = useState('');
     const [musics, setMusics] = useState([]);
     const [isPlaying , setIsPlaying] = useState(false);
+    const audioRef = useRef(new Audio());
     const isAutenticado = useCheckAuthentication();
     const token = document.cookie.split(';').find(cookie => cookie.trim().startsWith('token'));
+    const [isLiked, setIsLiked] = useState(false);
+    const [duration, setDuration] = useState(0); 
 
     const playSongFromCard = (songUrl, image, title, subtitle) => {
         setSongUrl(songUrl);
@@ -24,6 +27,66 @@ export default function HomePage () {
         setSubtitle(subtitle)
         setIsPlaying(true);
     };
+
+    const handlePlayPause = () => {
+        setIsPlaying(!isPlaying);
+        console.log("Pause ativado", isPlaying)
+    }
+
+    useEffect(() => {
+        const checkLikedSong = async () => {
+            try {
+                const response = await Axios.get('http://localhost:5000/checkLikeSong', {
+                    params: {
+                        songUrl: songUrl
+                    },
+                    withCredentials: true,
+                    headers: { 'Authorization': `Bearer ${token.split('=')[1]}`
+                    }
+                });
+                if (response.data.liked) {
+                    setIsLiked(true);
+                } else {
+                    setIsLiked(false);
+                }
+            } catch (error) {
+                console.error('Erro ao verificar música na playlist:', error);
+            }
+        };
+
+        const audio = audioRef.current;
+        audio.src = songUrl;
+        audio.addEventListener('loadedmetadata', () => {
+            setDuration(audio.duration);
+        });
+
+        if (songUrl) {
+            audio.play()
+                .then(() => {
+                    console.log('Reprodução iniciada');
+                    setIsPlaying(true);
+                    checkLikedSong();
+                })
+                .catch(error => console.error('Erro ao reproduzir áudio:', error));
+        } 
+
+        return () => {
+            audio.removeEventListener('loadedmetadata', () => {});
+        };
+    }, [songUrl, setIsPlaying, token]);
+
+    useEffect(() => {
+        const audio = audioRef.current;
+
+        if (isPlaying) {
+            audio.play()
+                .catch(error => {
+                    console.error('Erro ao reproduzir áudio:', error);
+                });
+        } else {
+            audio.pause();
+        }
+    }, [isPlaying]);
 
     useEffect(() => {
         const fetchMusics = async () => {
@@ -56,8 +119,8 @@ export default function HomePage () {
         <>
         <main className="main_container">
             <Sidebar />
-            <PlaylistContent playSongFromCard={playSongFromCard} musics={musics} isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
-            <Footer songUrl={songUrl} imageUrl={imageUrl} title={title} subtitle={subtitle} musics={musics} isPlaying={isPlaying} setIsPlaying={setIsPlaying}/>
+            <PlaylistContent playSongFromCard={playSongFromCard} musics={musics} isPlaying={isPlaying} setIsPlaying={setIsPlaying} handlePlayPause={handlePlayPause} />
+            <Footer songUrl={songUrl} imageUrl={imageUrl} title={title} subtitle={subtitle} musics={musics} isPlaying={isPlaying} setIsPlaying={setIsPlaying} audioRef={audioRef} duration={duration} isLiked={isLiked} setIsLiked={setIsLiked} handlePlayPause={handlePlayPause}/>
         </main>
         </>
     );

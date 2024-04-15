@@ -8,72 +8,10 @@ import ProgressBar from '../ProgressBar/ProgressBar';
 import VolumeSlider from '../Slider/Slider';
 import Axios from 'axios';
 
-export default function Footer ({songUrl, imageUrl, title, subtitle, musics, isPlaying, setIsPlaying }) {
-    const [isLiked, setIsLiked] = useState(false);
-    const audioRef = useRef(new Audio());
-    const [duration, setDuration] = useState(0); 
+export default function Footer ({songUrl, imageUrl, title, subtitle, musics, isPlaying, setIsPlaying, duration, audioRef, isLiked, setIsLiked, handlePlayPause }) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const Icon = isPlaying ? BsPauseCircleFill : BsPlayCircleFill;
     const token = document.cookie.split(';').find(cookie => cookie.trim().startsWith('token'));
-    
-    useEffect(() => {
-        const checkLikedSong = async () => {
-            try {
-                const response = await Axios.get('http://localhost:5000/checkLikeSong', {
-                    params: {
-                        songUrl: songUrl
-                    },
-                    withCredentials: true,
-                    headers: { 'Authorization': `Bearer ${token.split('=')[1]}`
-                    }
-                });
-                if (response.data.liked) {
-                    setIsLiked(true);
-                } else {
-                    setIsLiked(false);
-                }
-            } catch (error) {
-                console.error('Erro ao verificar música na playlist:', error);
-            }
-        };
-
-        const audio = audioRef.current;
-        audio.src = songUrl;
-        audio.addEventListener('loadedmetadata', () => {
-            setDuration(audio.duration);
-        });
-
-        if (songUrl) {
-            audio.play()
-                .then(() => {
-                    console.log('Reprodução iniciada');
-                    setIsPlaying(true);
-                    checkLikedSong();
-                })
-                .catch(error => console.error('Erro ao reproduzir áudio:', error));
-        } 
-
-        return () => {
-            audio.removeEventListener('loadedmetadata', () => {});
-        };
-    }, [songUrl, setIsPlaying, token]);
-
-    useEffect(() => {
-        const audio = audioRef.current;
-
-        if (isPlaying) {
-            audio.play()
-                .catch(error => {
-                    console.error('Erro ao reproduzir áudio:', error);
-                });
-        } else {
-            audio.pause();
-        }
-    }, [isPlaying]);
-
-    const handlePlayPause = () => {
-        setIsPlaying(!isPlaying);
-    };
 
     const handleEnded = () => {
         setIsPlaying(false);
