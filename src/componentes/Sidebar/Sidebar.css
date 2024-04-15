@@ -51,6 +51,9 @@
     justify-content: left;
     align-items: center;
     text-align: center;
+    border: none;
+    background: transparent;
+    cursor: pointer;
 }
 
 .menu_options i:hover, .textoptions:hover {
@@ -64,7 +67,7 @@
 }
 
 .middle_options {
-    padding-left: 1.2rem;
+    padding-left: 1.4rem;
     padding-bottom: 0.5rem;
 }
 
@@ -117,7 +120,7 @@
 }
 
 
-.playlists {
+.playlists_container_sidebar {
     font-size: 2rem;
     width: 281px;
     height: auto;
@@ -125,18 +128,17 @@
     padding-left: 1.2rem;
 }
 
-.divisor {
-    margin-right: 20px;
-    border-top: 1px solid gray;
-    margin-left: 20px;
-}
-
-
-.options2 {
+.playlists {
     display: flex;
     justify-content: left;
     align-items: left;
     text-align: left;
+}
+
+.btn_playlist_sidebar {
+    border: none;
+    background: transparent;
+    cursor: pointer;
 }
 
 .textplaylist {
@@ -152,6 +154,7 @@
     font-size: 2rem;
     position: absolute;
     margin-left: 80%;
+    margin-bottom: 0.2rem;
 }
 
 .btn_add_playlist:hover {
@@ -160,3 +163,15 @@
     transition: all .1s ease-in-out;
     cursor: pointer;
 }   
+
+#SearchLogo {
+    font-size: 1.5rem;
+}
+
+#HomeLogo {
+    font-size: 1.5rem;
+}
+
+#LibraryLogo {
+    font-size: 1.5rem;
+}

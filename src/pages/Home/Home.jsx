@@ -6,6 +6,7 @@ import Footer from '../../componentes/Footer/Footer';
 import { useState, useEffect, useRef } from 'react';
 import useCheckAuthentication from '../../api/Authenticator';
 import Axios from 'axios';
+import React from 'react';
 
 export default function HomePage () {
     const [songUrl, setSongUrl] = useState('');
@@ -19,6 +20,28 @@ export default function HomePage () {
     const token = document.cookie.split(';').find(cookie => cookie.trim().startsWith('token'));
     const [isLiked, setIsLiked] = useState(false);
     const [duration, setDuration] = useState(0); 
+    const [showSearch, setShowSearch] = React.useState(false);
+    const [searchResults, setSearchResults] = useState([]);
+
+    const toggleSearch = () => {
+        setShowSearch(true);
+    };
+
+
+    const handleSearch = async (searchItem) => {
+        try {
+            const response = await Axios.post("http://localhost:5000/search", {
+                searchItem: searchItem
+            } ,{ withCredentials: true })
+            setSearchResults(response.data)
+            console.log("Sua pesquisa resultou nisso: ", response.data)
+        }
+        catch (error) {
+            console.log(searchItem)
+            console.log("Ocorreu um erro ao pesquisar a música")
+        }
+    }
+
 
     const playSongFromCard = (songUrl, image, title, subtitle) => {
         setSongUrl(songUrl);
@@ -118,8 +141,8 @@ export default function HomePage () {
     return (
         <>
         <main className="main_container">
-            <Sidebar />
-            <PlaylistContent playSongFromCard={playSongFromCard} musics={musics} isPlaying={isPlaying} setIsPlaying={setIsPlaying} handlePlayPause={handlePlayPause} />
+            <Sidebar toggleSearch={toggleSearch}/>
+            <PlaylistContent playSongFromCard={playSongFromCard} musics={musics} isPlaying={isPlaying} setIsPlaying={setIsPlaying} handlePlayPause={handlePlayPause} showSearch={showSearch} onSearch={handleSearch} searchResults={searchResults}/>
             <Footer songUrl={songUrl} imageUrl={imageUrl} title={title} subtitle={subtitle} musics={musics} isPlaying={isPlaying} setIsPlaying={setIsPlaying} audioRef={audioRef} duration={duration} isLiked={isLiked} setIsLiked={setIsLiked} handlePlayPause={handlePlayPause}/>
         </main>
         </>

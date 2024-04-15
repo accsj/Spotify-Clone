@@ -1,14 +1,16 @@
 import '../Header/Header.css';
 import { useEffect, useState } from 'react';
+import React from 'react';
 import BtnAuthLogin from '../BtnAuthLogin/BtnAuthLogin';
 import BtnAuthRegister from '../BtnAuthRegister/BtnAuthRegister';
+import SearchBox from '../SearchBox/SearchBox';
 import useCheckAuthentication from '../../api/Authenticator';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Axios from 'axios';
 
 
-export default function Header () {
+export default function Header ({showSearch, onSearch, searchResults}) {
     const [menu, setMenu] = useState(false);
     const isAutenticado = useCheckAuthentication();
     const token = document.cookie.split(';').find(cookie => cookie.trim().startsWith('token'));
@@ -70,6 +72,11 @@ export default function Header () {
                     <i className='bx bx-chevron-right'></i>
                 </button>
             </div>
+            {showSearch && (
+                <div className="search_box">
+                    <SearchBox onSearch={onSearch} searchResults={searchResults}/>
+                </div>
+            )}
             {isAutenticado ? (
                 <div className='options_container'>
                     <button className='user' onClick={ShowMenu}>

@@ -1,39 +1,34 @@
 import '../Sidebar/Sidebar.css'
 import SpotifyLogo from '../../assets/imgs/spotifylogo.svg';
 import { IoIosAdd } from "react-icons/io";
+import { useNavigate } from 'react-router-dom';
 
-function Sidebar() {
+function Sidebar({toggleSearch}) {
+    const navigate = useNavigate();
+
+    const handleNavigateHome = () => {
+        navigate('/')
+    }
+
     return (
         <aside className="sidebar">
             <div className="sidebar_options">
             <img className='SpotifyLogo' src={SpotifyLogo} alt="Spotify Logo" />
                 <div className='menu_options'> 
-                    <div className='options'>
-                        <a className='HomeLink' href="/">
-                            <i id='HomeLogo' class='bx bx-home-alt'></i>
-                        </a>
-                        <a href="/">
-                            <p className='textoptions'>Início</p>
-                        </a>
-                    </div>
+                    <button className='options' onClick={handleNavigateHome}>
+                        <i id='HomeLogo' class='bx bx-home-alt'></i>
+                        <p className='textoptions'>Início</p>
+                    </button>
 
-                    <div className='options'>
-                        <a className='SearchLink' href="/">
-                            <i id='SearchLogo' class='bx bx-search' ></i>
-                        </a>
-                        <a href="/">
-                            <p className='textoptions'>Buscar</p>
-                        </a>
-                    </div>
+                    <button className='options'>
+                        <i id='SearchLogo' class='bx bx-search' ></i>
+                        <p className='textoptions' onClick={toggleSearch}>Buscar</p>
+                    </button>
 
-                    <div className='options'>
-                        <a className='LibraryLink' href="/">
-                            <i id='LibraryLogo' class='bx bx-library' ></i>
-                        </a>
-                        <a href="/">
-                            <p className='textoptions'>Sua biblioteca</p>
-                        </a>
-                    </div>
+                    <button className='options'>
+                        <i id='LibraryLogo' class='bx bx-library' ></i>
+                        <p className='textoptions'>Sua biblioteca</p>
+                    </button>
                 </div>
             </div>
 
@@ -68,43 +63,41 @@ function Sidebar() {
                 </div>
             </div>
 
-            <div className="divisor"></div>
-
-            <div className='playlists'>
-                <div className='options2'>
-                    <a className='PlaylistOptions' href="/">
+            <div className='playlists_container_sidebar'>
+                <div className='playlists'>
+                    <button className='btn_playlist_sidebar' href="/">
                         <p className='textplaylist'>
                             Nostalgic songs
                         </p>
-                    </a>
+                    </button>
                 </div>
-                <div className='options2'>
-                    <a className='PlaylistOptions' href="/">
+                <div className='playlists'>
+                    <button className='btn_playlist_sidebar' href="/">
                         <p className='textplaylist'>
                             Playlist accsj
                         </p>
-                    </a>
+                    </button>
                 </div>
-                <div className='options2'>
-                    <a className='PlaylistOptions' href="/">
+                <div className='playlists'>
+                    <button className='btn_playlist_sidebar' href="/">
                         <p className='textplaylist'>
                             Curtidas na rádio
                         </p>
-                    </a>
+                    </button>
                 </div>
-                <div className='options2'>
-                    <a className='PlaylistOptions' href="/">
+                <div className='playlists'>
+                    <button className='btn_playlist_sidebar' href="/">
                         <p className='textplaylist'>
                             My Playlist
                         </p>
-                    </a>
+                    </button>
                 </div>
-                <div className='options2'>
-                    <a className='PlaylistOptions' href="/">
+                <div className='playlists'>
+                    <button className='btn_playlist_sidebar' href="/">
                         <p className='textplaylist'>
                             Festa da Lina
                         </p>
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>    
