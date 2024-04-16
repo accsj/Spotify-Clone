@@ -17,8 +17,8 @@ export default function BtnPlaySearch({ playSongFromCard, songUrl, imageUrl, tit
     console.log(isPlaying)
 
     return (
-        <button className='btn_play_card' onClick={handlePlayButtonClick}>
-            {isPlaying ? <i id='btn_pause_card_i' class='bx bx-pause'></i> : <i id='btn_play_card_i' className='bx bxs-right-arrow'></i>}
+        <button className='btn_play_search_better' onClick={handlePlayButtonClick}>
+            {isPlaying ? <i id='btn_pause_search_better_icon' class='bx bx-pause'></i> : <i id='btn_play_search_better_icon' className='bx bxs-right-arrow'></i>}
         </button>
     );
 }

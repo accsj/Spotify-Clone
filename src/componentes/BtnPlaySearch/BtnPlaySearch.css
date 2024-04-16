@@ -1,4 +1,4 @@
-.btn_play_card {
+.btn_play_search_better {
     border: none;
     background-color: transparent;
     position: absolute;
@@ -14,21 +14,21 @@
     transition: .1s ease-in-out all;
 }
 
-.btn_play_card:hover {
+.btn_play_search_better:hover {
     transform: scale(1.15);
 }
 
-.btn_play_card i {
+.btn_play_search_better i {
     position: relative;
     color: black;
 }
 
-#btn_play_card_i {
+#btn_play_search_better_icon {
     margin-left: 0.1rem;
     font-size: 1.5rem;
 }
 
-#btn_pause_card_i {
+#btn_pause_search_better_icon {
     font-size: 1.5rem;
     color: black;
 }

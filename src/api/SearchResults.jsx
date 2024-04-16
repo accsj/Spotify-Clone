@@ -31,6 +31,9 @@ function SearchResultMusics ({searchResults, isPlaying, setIsPlaying, playSongFr
                     setIsPlayingIndex={setIsPlayingIndex}  
                     searchResults={searchResults}
                     songUrl={music.preview}
+                    imageUrl={music.albumCover}
+                    title={music.title}
+                    subtitle={music.artist}
                     />}
                     <div className="music_info">
                         <h3 className="music_title">{music.title}</h3>
