@@ -1,0 +1,191 @@
+.search_results_container {
+    display: flex;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto auto; 
+    margin-bottom: 4rem;
+    gap: 1rem;
+}
+
+.search_results_better_container {
+    background-color: #292929;
+    padding: 1.5rem;
+    width: 100%;
+    height: 65%;
+    margin-left: 1.5rem;
+    margin-right: 0;
+    border-radius: 10px;
+    display: flex;
+    align-items: left;
+    justify-content: left;
+}
+
+.search_results_better_container:hover {
+    background-color: #323232;
+    cursor: pointer;
+    transition: all .1s ease-in-out;
+}
+
+.album_better_results {
+    width: 90px;
+    height: 90px;
+    position: absolute;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+.album_better_results_artist {
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    border-radius: 50px;
+}
+
+.artistInfo {
+    display: inline-flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin-left: 24rem;
+    margin-top: 2rem;
+}
+
+.artistInfo h4 {
+    display: inline;
+    align-items: right;
+    justify-content: right;
+    text-align: right;
+    position: absolute;
+    margin-top: 7rem;
+    font-size: 0.8rem;
+}
+
+.artistInfo h4:hover {
+    text-decoration: underline;
+}
+
+.search_results_better_container h1 {
+    margin-top: 4rem;
+    margin-bottom: 0;
+    margin-left: 0;
+}
+
+.search_results_better_about h4 {
+    display: inline-flex;
+    align-items: center;    
+    margin-top: 0;
+    color: gray;
+}
+
+.search_results_better_about li {
+    margin-left: 1.5rem;
+}
+
+.search_results_better_about li:hover {
+    text-decoration: underline;
+}
+
+.search_results_better {
+    width: 68%;
+}
+
+.search_results_musics {
+    width: 100%;
+    margin-right: 2rem;
+}
+
+.search_results_better_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+}
+
+
+.search_results_music_album {
+    width: 40px;
+    height: 40px;
+    margin-left: 0.5rem;
+    border-radius: 5px;
+}
+
+.music_info {
+    display: flex;
+    margin-left: 0.5rem;
+    flex-direction: column;
+    margin-bottom: 0.2rem;
+    font-size: 0.8rem;
+
+}
+.music_item {
+    display: flex;
+    align-items: center;
+    height: 60px;
+    border-radius: 5px;
+}
+
+.music_item:hover{
+    background-color: #292929;
+}
+
+.music_title {
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.music_artist {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.music_title:hover, .music_artist:hover {
+    text-decoration: underline;
+}
+
+.search_results_musics_container {
+    background-color: #292929;
+    width: 80%;
+    height: 65%;
+    margin-left: 1.5rem;
+    margin-right: 0;
+    border-radius: 10px;
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    flex-direction: column;
+    width: 100%;
+}
+
+.search_results_musics_container:hover {
+    background-color: #323232;
+    cursor: pointer;
+    transition: all .1s ease-in-out;
+}
+
+.music_duration {
+    margin-left:auto;
+    margin-right: 3rem;
+}
+
+.btn_search_result_more {
+    margin-left: 1rem;
+    position: absolute;
+    margin-left: 42%;
+    font-size: 1.5rem;
+}
+
+.btn_search_result_more:hover {
+    transform: scale(1.1);
+    transition: all .1s ease-in-out;
+}
+
+.btn_search_result_add {
+    margin-left: 60%;
+    font-size: 1.2rem;
+}
+
+.btn_search_result_add:hover {
+    transform: scale(1.1);
+    transition: all .1s ease-in-out;
+}
+
+

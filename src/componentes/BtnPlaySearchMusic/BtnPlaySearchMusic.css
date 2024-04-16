@@ -1,0 +1,16 @@
+.btn_play_search_music {
+    border: none;
+    background: transparent;
+    position: absolute;
+    margin-left: 0.6rem;
+}
+
+#btn_play_search_icon {
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+#btn_pause_search_icon {
+    font-size: 1.8rem;
+    cursor: pointer;
+}
