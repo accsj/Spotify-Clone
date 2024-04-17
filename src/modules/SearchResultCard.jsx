@@ -16,7 +16,7 @@ function SearchResultsCardBetter ({searchResults, isPlaying, setIsPlaying, playS
                     <img className='album_better_results' src={firstResult.albumCover} alt="" />
                     <div className="artistInfo">
                         <img className='album_better_results_artist' src={firstResult.artistPic} alt="" />
-                        <h4>{firstResult.artist}</h4>
+                        <h4 className='album_better_results_artist_name'>{firstResult.artist}</h4>
                     </div>
                     <div className="search_results_better_about">
                         <h1>{firstResult.title}</h1>

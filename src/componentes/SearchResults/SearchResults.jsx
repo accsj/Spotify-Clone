@@ -1,9 +1,9 @@
 import '../SearchResults/SearchResults.css';
-import SearchResultsCardBetter from '../../api/SearchResultCard';
-import SearchResultMusics from '../../api/SearchResults';
+import SearchResultsCardBetter from '../../modules/SearchResultCard';
+import SearchResultMusics from '../../modules/SearchResults';
 import { useState } from 'react';
 
-function SearchResultsPage({ searchResults, isPlaying, setIsPlaying, playSongFromCard }) {
+function SearchResultsPage({ searchResults, isPlaying, setIsPlaying, playSongFromCard, onSearch }) {
     const hasResults = searchResults.length > 0;
     const [playingIndex, setPlayingIndex] = useState(null);
 
@@ -19,7 +19,7 @@ function SearchResultsPage({ searchResults, isPlaying, setIsPlaying, playSongFro
 
     return (
         <>
-        { hasResults && (
+        { hasResults && ( 
             <section className="search_results_container">
                 <div className="search_results_better">
                     <div className="search_results_better_title">

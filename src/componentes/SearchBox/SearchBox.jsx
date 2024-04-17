@@ -7,8 +7,9 @@ function SearchBox ({onSearch}) {
     const [searchItem, setSearchItem] = useState('');
 
     const handleChange = (event) => {
+        const value = event.target.value;
         setSearchItem(event.target.value);
-        onSearch(searchItem)
+        onSearch(value)
     };
 
     const handleSubmit = (event) => {
@@ -24,6 +25,7 @@ function SearchBox ({onSearch}) {
 
     const handleClear = () => {
         setSearchItem(''); 
+        onSearch('');
     };
 
     

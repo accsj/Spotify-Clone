@@ -38,6 +38,12 @@
     height: 70px;
     position: absolute;
     border-radius: 50px;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.album_better_results_artist_name {
+    font-size: 0.7rem !important;
 }
 
 .artistInfo {
@@ -45,7 +51,7 @@
     text-align: center;
     align-items: center;
     justify-content: center;
-    margin-left: 24rem;
+    margin-left: 22rem;
     margin-top: 2rem;
 }
 
@@ -112,7 +118,6 @@
     display: flex;
     margin-left: 0.5rem;
     flex-direction: column;
-    margin-bottom: 0.2rem;
     font-size: 0.8rem;
 
 }
@@ -164,6 +169,8 @@
 .music_duration {
     margin-left:auto;
     margin-right: 3rem;
+    position: absolute;
+    margin-left: 39%;
 }
 
 .btn_search_result_more {
@@ -179,7 +186,8 @@
 }
 
 .btn_search_result_add {
-    margin-left: 60%;
+    margin-left: 36%;
+    position: absolute;
     font-size: 1.2rem;
 }
 
@@ -188,4 +196,11 @@
     transition: all .1s ease-in-out;
 }
 
+.search_results_better_title {
+    width: 235px;
+}
+
+.search_results_musics_title {
+    width: 130px;
+}
 
