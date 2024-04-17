@@ -4,7 +4,7 @@ import React from 'react';
 import BtnAuthLogin from '../BtnAuthLogin/BtnAuthLogin';
 import BtnAuthRegister from '../BtnAuthRegister/BtnAuthRegister';
 import SearchBox from '../SearchBox/SearchBox';
-import useCheckAuthentication from '../../api/Authenticator';
+import useCheckAuthentication from '../../modules/Authenticator';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Axios from 'axios';

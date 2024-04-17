@@ -3,7 +3,7 @@ import Macdemarco from '../../assets/imgs/Album_macdemarco.jpg';
 import Nbhd from '../../assets/imgs/nbhd.jpeg';
 import TameImpala from '../../assets/imgs/tameimpala.jpg';
 import Bmth from '../../assets/imgs/bmth.png';
-import PlaylistItem from '../../api/PlaylistItems';
+import PlaylistItem from '../../modules/PlaylistItems';
 import { useState } from 'react';
 
 export default function PlaylistItemContent () {

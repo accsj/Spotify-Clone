@@ -3,7 +3,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import CurrentSong from '../../assets/imgs/Macdemarcoalbum.png';
 import { BsPlayCircleFill, BsPauseCircleFill } from "react-icons/bs";
 import { AiFillStepForward, AiFillStepBackward } from "react-icons/ai";
-import { useState, useRef, useEffect } from 'react'; 
+import { useState } from 'react'; 
 import ProgressBar from '../ProgressBar/ProgressBar';
 import VolumeSlider from '../Slider/Slider';
 import Axios from 'axios';

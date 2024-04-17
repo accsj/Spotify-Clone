@@ -3,7 +3,7 @@ import Sidebar from '../../componentes/Sidebar/Sidebar';
 import PlaylistContent from '../../componentes/PlaylistContent/PlaylistContent';
 import Footer from '../../componentes/Footer/Footer';
 import { useState, useEffect, useRef } from 'react';
-import useCheckAuthentication from '../../api/Authenticator';
+import useCheckAuthentication from '../../modules/Authenticator';
 import Axios from 'axios';
 import React from 'react';
 

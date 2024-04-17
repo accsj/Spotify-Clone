@@ -2,7 +2,7 @@ import '../PlaylistCard/PlaylistCard.css';
 import React, { useState, useEffect, useMemo } from 'react';
 import Axios from 'axios';
 import TitleDivisor from '../Title Divisor/TitleDivisor';
-import CardItem from '../../api/CardItem';
+import CardItem from '../../modules/CardItem';
 
 
 export default function PlaylistCard1({ playSongFromCard, isPlaying, setIsPlaying, handlePlayPause }) {

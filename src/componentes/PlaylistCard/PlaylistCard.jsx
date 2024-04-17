@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import CardItem from '../../api/CardItem.jsx';
+import CardItem from '../../modules/CardItem.jsx';
 import TitleDivisor from '../Title Divisor/TitleDivisor.jsx';
-import useCheckAuthentication from '../../api/Authenticator.jsx';
+import useCheckAuthentication from '../../modules/Authenticator.jsx';
 
 export default function PlaylistCard({ playSongFromCard, musics, isPlaying, setIsPlaying, handlePlayPause }) {
     const [visibleMusics, setVisibleMusics] = useState(4);
