@@ -27,25 +27,26 @@ export default function HomePage () {
         setShowSearch(true);
     };
 
-
     const handleSearch = async (searchItem) => {
         try {
-            const response = await Axios.post("http://localhost:5000/search", {
-                searchItem: searchItem
-            } ,{ withCredentials: true })
-            setSearchResults(response.data)
+            if (searchItem.trim() !== '') {
+                const response = await Axios.post("http://localhost:5000/search", {
+                    searchItem: searchItem
+                }, { withCredentials: true });
+                setSearchResults(response.data);
+            } else {
+                setSearchResults([]);
+            }
+        } catch (error) {
+            console.log("Ocorreu um erro ao pesquisar a música", error);
         }
-        catch (error) {
-            console.log("Ocorreu um erro ao pesquisar a música", error)
-        }
-    }
-
+    };
 
     const playSongFromCard = (songUrl, image, title, subtitle) => {
         setSongUrl(songUrl);
-        setImageUrl(image)
-        setTitle(title)
-        setSubtitle(subtitle)
+        setImageUrl(image);
+        setTitle(title);
+        setSubtitle(subtitle);
         setIsPlaying(true);
     };
 

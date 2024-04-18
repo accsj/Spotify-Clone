@@ -1,15 +1,15 @@
 import '../BtnPlaySearchMusic/BtnPlaySearchMusic.css';
 
 
-function BtnPlaySearchMusic ({ playSongFromCard, songUrl, imageUrl, title, subtitle, isPlaying, setIsPlaying, setIsPlayingIndex, handlePlayPause }) {
+function BtnPlaySearchMusic ({ key, playSongFromCard, songUrl, imageUrl, title, subtitle, isPlaying, setIsPlaying, setIsPlayingIndex, handlePlayPause }) {
 
     const handlePlayButtonClick = () => {
         if (isPlaying) {
-            setIsPlaying(false);
+            handlePlayPause();
             setIsPlayingIndex(null);
         } else {
             setIsPlaying(true);
-            setIsPlayingIndex(true); 
+            setIsPlayingIndex(key); 
             playSongFromCard(songUrl, imageUrl, title, subtitle);
         }
     };

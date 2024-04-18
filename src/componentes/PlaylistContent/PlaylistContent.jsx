@@ -10,7 +10,7 @@ export default function PlaylistContent ({playSongFromCard, musics, isPlaying, s
     return (
         <section className='playlist_content'>
             <Header showSearch={showSearch} onSearch={onSearch} searchResults={searchResults}/>
-            <SearchResultsPage playSongFromCard={playSongFromCard} searchResults={searchResults} isPlaying={isPlaying} setIsPlaying={setIsPlaying} onSearch={onSearch}/>
+            <SearchResultsPage playSongFromCard={playSongFromCard} searchResults={searchResults} isPlaying={isPlaying} setIsPlaying={setIsPlaying} onSearch={onSearch} handlePlayPause={handlePlayPause}/>
             <PlaylistItemContent playSongFromCard={playSongFromCard}/>
             <CardWouldLike playSongFromCard={playSongFromCard} isPlaying={isPlaying} setIsPlaying={setIsPlaying} handlePlayPause={handlePlayPause}/>
             <PlaylistCard playSongFromCard={playSongFromCard} musics={musics} isPlaying={isPlaying} setIsPlaying={setIsPlaying} handlePlayPause={handlePlayPause}/>

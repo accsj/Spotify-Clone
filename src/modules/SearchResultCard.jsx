@@ -2,7 +2,7 @@ import '../componentes/SearchResults/SearchResults.css';
 import BtnPlaySearch from '../componentes/BtnPlaySearch/BtnPlaySearch';
 import { useState } from 'react';
 
-function SearchResultsCardBetter ({searchResults, isPlaying, setIsPlaying, playSongFromCard, setIsPlayingIndex}) {
+function SearchResultsCardBetter ({ searchResults, isPlaying, setIsPlaying, playSongFromCard, setIsPlayingIndex, handlePlayPause}) {
     const firstResult = searchResults.length > 0 ? searchResults[0] : null;
     const [isHovered, setIsHovered] = useState(false);
 
@@ -25,7 +25,16 @@ function SearchResultsCardBetter ({searchResults, isPlaying, setIsPlaying, playS
                 </div>
             )}
         { isHovered && (
-            <BtnPlaySearch isPlaying={isPlaying} setIsPlaying={setIsPlaying} playSongFromCard={playSongFromCard} setIsPlayingIndex={setIsPlayingIndex} songUrl={firstResult.preview} imageUrl={firstResult.albumCover} title={firstResult.title} subtitle={firstResult.artist}/>
+            <BtnPlaySearch 
+            isPlaying={isPlaying}
+            setIsPlaying={setIsPlaying} 
+            playSongFromCard={playSongFromCard} 
+            setIsPlayingIndex={setIsPlayingIndex} 
+            songUrl={firstResult.preview} 
+            imageUrl={firstResult.albumCover} 
+            title={firstResult.title} 
+            subtitle={firstResult.artist} 
+            handlePlayPause={handlePlayPause}/>
         )}
         </div>
     )

@@ -11,7 +11,7 @@ function formatDuration(durationInSeconds) {
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 }
 
-function SearchResultMusics ({searchResults, isPlaying, setIsPlaying, playSongFromCard, setIsPlayingIndex}) {
+function SearchResultMusics ({searchResults, isPlaying, setIsPlaying, playSongFromCard, setIsPlayingIndex, handlePlayPause, index}) {
     const [hoveredIndex, setHoveredIndex] = useState(null);
     
     return (
@@ -25,15 +25,16 @@ function SearchResultMusics ({searchResults, isPlaying, setIsPlaying, playSongFr
                 >
                     <img className="search_results_music_album" src={music.albumCover} alt="Album Cover" />
                     {hoveredIndex === index && <BtnPlaySearchMusic className='btn_play_search_music'
-                    isPlaying={isPlaying} 
-                    setIsPlaying={setIsPlaying} 
-                    playSongFromCard={playSongFromCard} 
-                    setIsPlayingIndex={setIsPlayingIndex}  
-                    searchResults={searchResults}
-                    songUrl={music.preview}
-                    imageUrl={music.albumCover}
-                    title={music.title}
-                    subtitle={music.artist}
+                        isPlaying={isPlaying} 
+                        setIsPlaying={setIsPlaying} 
+                        playSongFromCard={playSongFromCard} 
+                        setIsPlayingIndex={setIsPlayingIndex}  
+                        searchResults={searchResults}
+                        songUrl={music.preview}
+                        imageUrl={music.albumCover}
+                        title={music.title}
+                        subtitle={music.artist}
+                        handlePlayPause={handlePlayPause}
                     />}
                     <div className="music_info">
                         <h3 className="music_title">{music.title}</h3>
