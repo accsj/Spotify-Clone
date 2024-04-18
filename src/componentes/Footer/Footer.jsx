@@ -4,6 +4,7 @@ import CurrentSong from '../../assets/imgs/Macdemarcoalbum.png';
 import { BsPlayCircleFill, BsPauseCircleFill } from "react-icons/bs";
 import { AiFillStepForward, AiFillStepBackward } from "react-icons/ai";
 import { useState } from 'react'; 
+import { toast } from 'react-toastify';
 import ProgressBar from '../ProgressBar/ProgressBar';
 import VolumeSlider from '../Slider/Slider';
 import Axios from 'axios';
@@ -57,10 +58,28 @@ export default function Footer ({songUrl, imageUrl, title, subtitle, musics, isP
             if (response.data.success) {
                 setIsLiked(true);
             } else {
-                console.error('Erro ao adicionar música aos favoritos:', response.data.message);
+                toast.error('Ocorreu um erro ao adicionar a música em favoritos.', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
             }
         } catch (error) {
-            console.error('Erro ao adicionar música aos favoritos:', error);
+            toast.error('Ocorreu um erro ao adicionar a música em favoritos.', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
         }
     };
 

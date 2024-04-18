@@ -4,6 +4,7 @@ import PlaylistContent from '../../componentes/PlaylistContent/PlaylistContent';
 import Footer from '../../componentes/Footer/Footer';
 import { useState, useEffect, useRef } from 'react';
 import useCheckAuthentication from '../../modules/Authenticator';
+import { toast } from 'react-toastify';
 import Axios from 'axios';
 import React from 'react';
 
@@ -55,7 +56,7 @@ export default function HomePage () {
     useEffect(() => {
         const checkLikedSong = async () => {
             try {
-                const response = await Axios.get('http://localhost:5000/checkLikeSong', {
+                const response = await Axios.get('http://localhost:5000/checkLikeSongs', {
                     params: {
                         songUrl: songUrl
                     },
@@ -69,7 +70,16 @@ export default function HomePage () {
                     setIsLiked(false);
                 }
             } catch (error) {
-                console.error('Erro ao verificar música na playlist:', error);
+                toast.error('Erro ao verificar música na playlist.', {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                    });
             }
         };
 
@@ -122,10 +132,28 @@ export default function HomePage () {
                     const shuffledMusics = response.data.data.sort(() => Math.random() - 0.5);
                     setMusics(shuffledMusics);
                 } else {
-                    console.error('Erro ao buscar músicas:', response.data.message);
+                    toast.error('Erro ao buscar músicas.', {
+                        position: "top-right",
+                        autoClose: 2000,
+                        hideProgressBar: true,
+                        closeOnClick: true,
+                        pauseOnHover: false,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                    });
                 }
             } catch (error) {
-                console.error('Erro ao buscar músicas:', error);
+                toast.error('Erro ao buscar músicas.', {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
             }
         };
 

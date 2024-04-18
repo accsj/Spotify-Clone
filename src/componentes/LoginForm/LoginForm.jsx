@@ -79,7 +79,7 @@ export default function LoginForm () {
             if (response.data.success) {
                 toast.success('Login realizado com sucesso!', {
                     position: "top-left",
-                    autoClose: 5000,
+                    autoClose: 2000,
                     hideProgressBar: true,
                     closeOnClick: true,
                     pauseOnHover: false,
@@ -92,7 +92,7 @@ export default function LoginForm () {
             } else {
                 toast.error('Erro ao realizar o login com google', {
                     position: "top-right",
-                    autoClose: 5000,
+                    autoClose: 2000,
                     hideProgressBar: true,
                     closeOnClick: true,
                     pauseOnHover: false,
@@ -104,7 +104,7 @@ export default function LoginForm () {
         } catch (error) {
             toast.error('Erro ao realizar o login com google', {
                 position: "top-right",
-                autoClose: 5000,
+                autoClose: 2000,
                 hideProgressBar: true,
                 closeOnClick: true,
                 pauseOnHover: false,
