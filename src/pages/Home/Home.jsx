@@ -57,7 +57,7 @@ export default function HomePage () {
     useEffect(() => {
         const checkLikedSong = async () => {
             try {
-                const response = await Axios.get('http://localhost:5000/checkLikeSongs', {
+                const response = await Axios.get('http://localhost:5000/checkLikeSong', {
                     params: {
                         songUrl: songUrl
                     },

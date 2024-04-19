@@ -49,7 +49,6 @@ export default function Header ({showSearch, onSearch, searchResults}) {
                 if (response.data.success) {
                     setUsername(response.data.username)
                 }
-                console.log('Erro ao buscar nome do usuário')
             }
             catch (error) {
                 console.log(error)

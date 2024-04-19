@@ -1,7 +1,7 @@
 import React from 'react';
 import '../BtnPlaySearch/BtnPlaySearch.css';
 
-function BtnPlaySearch ({ key, playSongFromCard, songUrl, imageUrl, title, subtitle, isPlaying, setIsPlaying, setIsPlayingIndex, handlePlayPause }) {
+function BtnPlaySearch ({ playSongFromCard, songUrl, imageUrl, title, subtitle, isPlaying, setIsPlaying, setIsPlayingIndex, handlePlayPause }) {
 
     const handlePlayButtonClick = () => {
         if (isPlaying) {
@@ -9,7 +9,6 @@ function BtnPlaySearch ({ key, playSongFromCard, songUrl, imageUrl, title, subti
             setIsPlayingIndex(null);
         } else {
             setIsPlaying(true);
-            setIsPlayingIndex(key); 
             playSongFromCard(songUrl, imageUrl, title, subtitle);
         }
     };
