@@ -15,8 +15,8 @@ function BtnPlaySearch ({ key, playSongFromCard, songUrl, imageUrl, title, subti
     };
 
     return (
-        <button className="btn_play_search_music" onClick={handlePlayButtonClick}>
-            {isPlaying ? <i id='btn_pause_search_icon' class='bx bx-pause'></i> : <i id='btn_play_search_icon' className='bx bxs-right-arrow'></i>}
+        <button className="btn_play_search_better" onClick={handlePlayButtonClick}>
+            {isPlaying ? <i id='btn_play_search_better_icon' class='bx bx-pause'></i> : <i id='btn_play_search_better_icon' className='bx bxs-right-arrow'></i>}
         </button>
     )
 }
