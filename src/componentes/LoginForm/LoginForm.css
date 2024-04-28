@@ -16,7 +16,7 @@
     background: #121212;
     border-radius: 8px;
     margin-top: 2rem;
-    width: 850px;
+    width: 800px;
     margin-left: 23%;
 }
 .title_auth {
@@ -25,13 +25,16 @@
     cursor: default;
 }
 
+.GoogleLogin {
+    margin-bottom: 2rem;
+}
+
 .loginform {
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     flex-direction: column;
-    padding-bottom: 10rem;
 }
 
 .input_box {
@@ -138,4 +141,14 @@
 
 .recovery a:hover, .registro_link a:hover {
     color: #1ed760;
+}
+
+.login_buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 4rem;
 }

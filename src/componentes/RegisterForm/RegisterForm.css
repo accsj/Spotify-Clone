@@ -13,6 +13,7 @@
     align-items: center;
     text-align: center;
     flex-direction: column;
+
 }
 
 .register_title {
@@ -82,6 +83,26 @@
     cursor: pointer;
 }
 
-.GoogleLogin {
-    margin-bottom: 6rem;
+
+.register_buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 8rem;
+}
+
+.register_button_back {
+    display: flex;
+    position: absolute;
+    font-size: 2rem;
+    top: 13.8rem;
+    margin-right: 28rem;
+    transition: all .1s ease-in-out;
+    cursor: pointer;
+}
+
+.register_button_back:hover {
+    transform: scale(1.1);
 }

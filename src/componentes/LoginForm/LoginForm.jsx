@@ -157,16 +157,18 @@ export default function LoginForm () {
                     </div>
                 </div>
 
-                <button className='btn_submit'>
-                    <h3>Entrar</h3>
-                </button>
+                <div className="login_buttons">
+                    <button className='btn_submit'>
+                        <h3>Entrar</h3>
+                    </button>
 
-                <div className="recovery">
-                    <a href="recovery">Esqueceu a senha?</a>
-                </div>
+                    <div className="recovery">
+                        <a href="recovery">Esqueceu a senha?</a>
+                    </div>
 
-                <div className="registro_link">
-                    <p>Não tem uma conta? <a href="registro">Inscrever-se no Spotify</a></p>
+                    <div className="registro_link">
+                        <p>Não tem uma conta? <a href="registro">Inscrever-se no Spotify</a></p>
+                    </div>
                 </div>
             </form>
             
