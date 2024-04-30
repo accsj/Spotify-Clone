@@ -17,6 +17,16 @@ export default function LoginForm () {
     const [showPassword, setShowPassword] = useState(false);
 
 
+    const handleNavigateRecovery = (event) => {
+        event.preventDefault();
+        navigate('/redefinir-senha')
+    }
+
+    const handleNavigateRegister = (event) => {
+        event.preventDefault();
+        navigate('/registro')
+    }
+
     const handleClickLogin = async (event) => {
         event.preventDefault();
 
@@ -128,6 +138,8 @@ export default function LoginForm () {
         setShowPassword(!showPassword);
     };
 
+
+
     return (
         <section className="login_container_form">
             <div className="title_auth">
@@ -163,11 +175,11 @@ export default function LoginForm () {
                     </button>
 
                     <div className="recovery">
-                        <a href="recovery">Esqueceu a senha?</a>
+                        <a onClick={handleNavigateRecovery}>Esqueceu a senha?</a>
                     </div>
 
                     <div className="registro_link">
-                        <p>Não tem uma conta? <a href="registro">Inscrever-se no Spotify</a></p>
+                        <p>Não tem uma conta? <a onClick={handleNavigateRegister}>Inscrever-se no Spotify</a></p>
                     </div>
                 </div>
             </form>
