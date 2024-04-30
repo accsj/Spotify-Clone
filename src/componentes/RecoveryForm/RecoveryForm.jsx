@@ -29,8 +29,8 @@ function RecoveryForm () {
                 email
             });
 
-            if (response.data.success) {
-                toast.success('Link enviado com sucesso', {
+            if (response.data.success === true) {
+                toast.success(`${response.data.message}`, {
                     position: "top-left",
                     autoClose: 5000,
                     hideProgressBar: true,
@@ -42,7 +42,7 @@ function RecoveryForm () {
                 });
                 navigate("/entrar");
             } else {
-                toast.error('Erro ao realizar o envio do link', {
+                toast.error(`${response.data.message}`, {
                     position: "top-left",
                     autoClose: 5000,
                     hideProgressBar: true,
