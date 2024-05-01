@@ -7,6 +7,7 @@ import useCheckAuthentication from '../../modules/Authenticator';
 import { toast } from 'react-toastify';
 import Axios from 'axios';
 import React from 'react';
+import Loader from '../../componentes/Loader/Loader';
 
 export default function HomePage () {
     const [songUrl, setSongUrl] = useState('');
@@ -22,6 +23,7 @@ export default function HomePage () {
     const [duration, setDuration] = useState(0); 
     const [showSearch, setShowSearch] = React.useState(false);
     const [searchResults, setSearchResults] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     const toggleSearch = () => {
         setShowSearch(true);
@@ -119,6 +121,7 @@ export default function HomePage () {
 
     useEffect(() => {
         const fetchMusics = async () => {
+            setLoading(true);
             try {
                 let response;
                 if (isAutenticado) {
@@ -155,6 +158,8 @@ export default function HomePage () {
                     progress: undefined,
                     theme: "colored",
                 });
+            } finally {
+                setLoading(false);
             }
         };
 
@@ -165,6 +170,9 @@ export default function HomePage () {
     return (
         <>
         <main className="main_container">
+            {loading && <div className="loading_overlay">
+                <Loader />
+            </div>}
             <Sidebar toggleSearch={toggleSearch}/>
             <PlaylistContent playSongFromCard={playSongFromCard} musics={musics} isPlaying={isPlaying} setIsPlaying={setIsPlaying} handlePlayPause={handlePlayPause} showSearch={showSearch} onSearch={handleSearch} searchResults={searchResults}/>
             <Footer songUrl={songUrl} imageUrl={imageUrl} title={title} subtitle={subtitle} musics={musics} isPlaying={isPlaying} setIsPlaying={setIsPlaying} audioRef={audioRef} duration={duration} isLiked={isLiked} setIsLiked={setIsLiked} handlePlayPause={handlePlayPause}/>

@@ -61,7 +61,7 @@
     border: none;
     background: transparent;
     outline: none;
-    width: 100%;
+    width: 95%;
     height: 10%;
     padding: 0.8rem;
     font-size: 1rem;
@@ -74,9 +74,6 @@
     margin-bottom: 0.5rem;
 }
 
-
-
-
 .btn_recovery_form {
     border: none;
     display: flex;
@@ -86,10 +83,10 @@
     border: 1px solid #1ed760;
     background-color: #1ed760;
     border-radius: 50px;
-    width: 100%;
+    width: 95%;
     height: 50px;
     margin-top: 2rem;
-    transition: .1s ease-in-out all smooth;
+    transition: all .1s ease-in-out;
 }
 
 .btn_recovery_form h3 {
@@ -98,6 +95,5 @@
 
 .btn_recovery_form:hover {
     transform: scale(1.1);
-    transition: all .1s ease-in-out;
     cursor: pointer;
 }

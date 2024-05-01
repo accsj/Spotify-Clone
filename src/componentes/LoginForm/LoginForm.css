@@ -19,13 +19,21 @@
     width: 800px;
     margin-left: 23%;
 }
+
 .title_auth {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     font-size: 2rem;
     margin-top: 2rem;
     cursor: default;
 }
 
 .GoogleLogin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 2rem;
 }
 
@@ -74,7 +82,7 @@
     background: transparent;
     font-size: 2rem;
     display: flex;
-    margin-left: 50%;
+    margin-left: 40%;
     margin-top: 2.4rem;
     position: absolute;
     cursor: pointer;
@@ -93,7 +101,7 @@
     color: white;
 }
 
-.btn_submit {
+.btn_login_form {
     border: none;
     display: flex;
     justify-content: center;
@@ -105,13 +113,14 @@
     padding-left: 6rem;
     padding-right: 6rem;
     margin-top: 2rem;
+    transition: all .1s ease-in-out;
 }
 
-.btn_submit h3 {
+.btn_login_form h3 {
     color: black;
 }
 
-.btn_submit:hover {
+.btn_login_form:hover {
     transform: scale(1.1);
     transition: all .1s ease-in-out smooth;
     cursor: pointer;
@@ -121,33 +130,34 @@
     margin-top: 2rem;
 }
 
-.recovery a {
-    cursor: pointer;
-}
-
-.recovery a {
+.btn_recovery_link {
     color: white;
     text-decoration: underline;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all .1s ease-in-out;
 }
 
 .registro_link {
     margin-top: 0.5rem;
 }
 
-.registro_link a {
-    cursor: pointer;
-}
-
-.registro_link a {
+.btn_registro_link {
     color: white;
     font-size: 1rem;
     text-decoration: underline;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    transition: all .1s ease-in-out;
 }
 .registro_link p {
     cursor: default;
 }
 
-.recovery a:hover, .registro_link a:hover {
+.btn_recovery_link:hover, .btn_registro_link:hover {
     color: #1ed760;
 }
 

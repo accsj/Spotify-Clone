@@ -3,13 +3,17 @@ import React, {useState} from 'react';
 import Axios from 'axios';
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom';
+import Loader from '../Loader/Loader';
 
 function RecoveryForm () {
     const [email, setEmail] = useState('');
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
     
     const handleRecoverySubmit = async (event) => {
         event.preventDefault();
+        setLoading(true);
+
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
             toast.info('Por favor, insira um email válido.', {
@@ -40,7 +44,7 @@ function RecoveryForm () {
                     progress: undefined,
                     theme: "colored",
                 });
-                navigate("/entrar");
+                navigate("/");
             } else {
                 toast.error(`${response.data.message}`, {
                     position: "top-left",
@@ -64,12 +68,18 @@ function RecoveryForm () {
                 progress: undefined,
                 theme: "colored",
             });
+        } finally {
+            setLoading(false);
         }
     };
 
     return (
         <section className="recovery_form_container">
-                <div className="recovery_title">
+            {loading && <div className="loading_overlay">
+                <Loader />
+            </div>}
+            <div className="recovery_form_content">
+            <div className="recovery_title">
                     <h1>Redefina sua senha</h1>
                     <p>Insira seu e-mail ou nome de usuário pra enviarmos um link pra você acessar sua conta.</p>
                 </div>
@@ -82,6 +92,7 @@ function RecoveryForm () {
                         <h3>Enviar link</h3>
                     </button>
                 </form>
+            </div>
         </section>
     )
 }

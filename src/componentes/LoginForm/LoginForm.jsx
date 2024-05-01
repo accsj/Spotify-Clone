@@ -7,19 +7,20 @@ import { toast } from 'react-toastify';
 import { GoogleLogin } from '@react-oauth/google';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { jwtDecode } from "jwt-decode";
+import Loader from '../Loader/Loader';
 
 
 export default function LoginForm () {
-
     const navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
+    const [loading, setLoading] = useState(false);
 
 
     const handleNavigateRecovery = (event) => {
         event.preventDefault();
-        navigate('/redefinir-senha')
+        navigate('/recuperar-senha')
     }
 
     const handleNavigateRegister = (event) => {
@@ -29,6 +30,7 @@ export default function LoginForm () {
 
     const handleClickLogin = async (event) => {
         event.preventDefault();
+        setLoading(true);
 
         try {
             const response = await Axios.post("http://localhost:5000/login", {
@@ -72,6 +74,8 @@ export default function LoginForm () {
                 progress: undefined,
                 theme: "colored",
                 });
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -138,52 +142,53 @@ export default function LoginForm () {
         setShowPassword(!showPassword);
     };
 
-
-
     return (
         <section className="login_container_form">
-            <div className="title_auth">
-                <h1>Entrar no Spotify</h1>
+            {loading && <div className="loading_overlay">
+                <Loader />
+            </div>}
+            <div className="login_content" style={{ opacity: loading ? 0.5 : 1 }}>
+                <div className="title_auth">
+                    <h1>Entrar no Spotify</h1>
+                </div>
+                <div className="GoogleLogin" onClick={handleClickLoginRegister}>
+                    <GoogleOAuthProvider clientId={'457811923207-lchllp9jusgpmnb98r0en5p6vh7m56n3.apps.googleusercontent.com'}>
+                        <GoogleLogin
+                            onSuccess={responseGoogle}
+                            onError={() => {
+                                console.log('Login Failed');
+                            }}
+                            useOneTap
+                        />
+                    </GoogleOAuthProvider>
+                </div>
+                <form className="loginform" onSubmit={handleClickLogin}>
+                    <div className='input_box'>
+                        <label htmlFor=""><h4>E-mail ou nome de usuário</h4><input type="text" name='username' placeholder='E-mail ou nome de usuário' required onChange={(e) => setUsername(e.target.value)}/></label>
+                    </div>
+
+                    <div className='input_box'>
+                        <label htmlFor=""><h4>Senha</h4><input type={showPassword ? "text" : "password"} name='password' placeholder='Senha' required onChange={(e) => setPassword(e.target.value)}/></label>
+                        <div className='hideshow' onClick={togglePasswordVisibility}>
+                            <i className={showPassword ? 'bx bx-hide' : 'bx bx-show-alt'}></i>
+                        </div>
+                    </div>
+
+                    <div className="login_buttons">
+                        <button className='btn_login_form' disabled={loading}>
+                            <h3>Entrar</h3>
+                        </button>
+
+                        <div className="recovery">
+                            <button className='btn_recovery_link' onClick={handleNavigateRecovery}>Esqueceu a senha?</button>
+                        </div>
+
+                        <div className="registro_link">
+                            <p>Não tem uma conta? <button className='btn_registro_link' onClick={handleNavigateRegister}>Inscrever-se no Spotify</button></p>
+                        </div>
+                    </div>
+                </form>
             </div>
-            
-            <div className="GoogleLogin" onClick={handleClickLoginRegister}>
-                <GoogleOAuthProvider clientId={'457811923207-lchllp9jusgpmnb98r0en5p6vh7m56n3.apps.googleusercontent.com'}>
-                <GoogleLogin
-                    onSuccess={responseGoogle}
-                    onError={() => {
-                        console.log('Login Failed');
-                    }}
-                    useOneTap
-                />
-                </GoogleOAuthProvider>
-            </div>
-            <form className="loginform" onSubmit={handleClickLogin}>
-                <div className='input_box'>
-                    <label htmlFor=""><h4>E-mail ou nome de usuário</h4><input type="text" name='username' placeholder='E-mail ou nome de usuário' required onChange={(e) => setUsername(e.target.value)}/></label>
-                </div>
-
-                <div className='input_box'>
-                    <label htmlFor=""><h4>Senha</h4><input type={showPassword ? "text" : "password"} name='password' placeholder='Senha' required onChange={(e) => setPassword(e.target.value)}/></label>
-                    <div className='hideshow' onClick={togglePasswordVisibility}>
-                    <i className={showPassword ? 'bx bx-hide' : 'bx bx-show-alt'}></i>
-                    </div>
-                </div>
-
-                <div className="login_buttons">
-                    <button className='btn_submit'>
-                        <h3>Entrar</h3>
-                    </button>
-
-                    <div className="recovery">
-                        <a onClick={handleNavigateRecovery}>Esqueceu a senha?</a>
-                    </div>
-
-                    <div className="registro_link">
-                        <p>Não tem uma conta? <a onClick={handleNavigateRegister}>Inscrever-se no Spotify</a></p>
-                    </div>
-                </div>
-            </form>
-            
         </section>
     )
 }
