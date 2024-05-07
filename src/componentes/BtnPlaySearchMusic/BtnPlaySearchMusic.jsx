@@ -1,19 +1,17 @@
 import '../BtnPlaySearchMusic/BtnPlaySearchMusic.css';
 
 
-function BtnPlaySearchMusic ({ key, playSongFromCard, songUrl, imageUrl, title, subtitle, isPlaying, setIsPlaying, setIsPlayingIndex, handlePlayPause }) {
+function BtnPlaySearchMusic ({ playSongFromCard, songUrl, imageUrl, title, subtitle, isPlaying, setIsPlaying, setIsPlayingIndex, handlePlayPause }) {
 
     const handlePlayButtonClick = () => {
         if (isPlaying) {
             handlePlayPause();
             setIsPlayingIndex(null);
         } else {
-            setIsPlaying(true);
-            setIsPlayingIndex(key); 
+            setIsPlaying(true); 
             playSongFromCard(songUrl, imageUrl, title, subtitle);
         }
     };
-
 
     return (
         <button className="btn_play_search_music" onClick={handlePlayButtonClick}>

@@ -4,15 +4,14 @@ import BtnPlaySearchMusic from '../componentes/BtnPlaySearchMusic/BtnPlaySearchM
 import { IoIosMore } from "react-icons/io";
 import { IoMdAddCircleOutline } from "react-icons/io";
 
-
-function formatDuration(durationInSeconds) {
-    const minutes = Math.floor(durationInSeconds / 60);
-    const seconds = durationInSeconds % 60;
-    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-}
-
-function SearchResultMusics ({searchResults, isPlaying, setIsPlaying, playSongFromCard, setIsPlayingIndex, handlePlayPause, index}) {
+function SearchResultMusics ({searchResults, isPlaying, setIsPlaying, playSongFromCard, setIsPlayingIndex, handlePlayPause}) {
     const [hoveredIndex, setHoveredIndex] = useState(null);
+
+    const formatDuration = (durationInSeconds) => {
+        const minutes = Math.floor(durationInSeconds / 60);
+        const seconds = durationInSeconds % 60;
+        return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    }
     
     return (
         <div className="search_results_musics_container">
