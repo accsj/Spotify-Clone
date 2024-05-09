@@ -2,7 +2,7 @@
 
 Esse projeto vai consistir em fazer um clone do spotify onde haverá telas para quem estiver logado ou não, verificação de usuário por jwt, cadastramento de usuários e validação dos mesmos com banco de dados, onde irei usar Postgresql.
 
-Não faço ideia de como fazer o tocador de fato, mas irei tentar implementar no futuro pois quero que seja o mais próximo possível, porém o foco é mais na parte de autenticação de usuários.
+O projeto progrediu bastante, porém tenho estado com diversos erros em relações a botões de play, dei uma pausa no projeto pois estou envolvidos em outras demandas, então este projeto pessoal deverá aguardar um pouco para o seu desenvolvimento...
 
 ![Screenshot 2024-04-27 at 12-01-58 Spotify](https://github.com/accsj/Spotify-Clone/assets/109449153/970bcd12-ed5d-4508-83a1-c644746b9984)
 
