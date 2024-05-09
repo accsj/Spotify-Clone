@@ -1,6 +1,6 @@
-import '../Header/Header.css';
-import { useEffect, useState } from 'react';
-import React from 'react';
+import React, { useState } from 'react';
+import './Header.css';
+import { useEffect } from 'react';
 import BtnAuthLogin from '../BtnAuthLogin/BtnAuthLogin';
 import BtnAuthRegister from '../BtnAuthRegister/BtnAuthRegister';
 import SearchBox from '../SearchBox/SearchBox';
@@ -9,8 +9,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Axios from 'axios';
 
-
-export default function Header ({showSearch, onSearch, searchResults}) {
+export default function Header({ showSearch, onSearch, searchResults, handlePreviousClick, handleNextClick }) {
     const [menu, setMenu] = useState(false);
     const isAutenticado = useCheckAuthentication();
     const token = document.cookie.split(';').find(cookie => cookie.trim().startsWith('token'));
@@ -40,11 +39,13 @@ export default function Header ({showSearch, onSearch, searchResults}) {
         }, 1000);
     };
 
-    useEffect (() => {
+    useEffect(() => {
         const getusername = async () => {
             try {
-                const response = await Axios.get('http://localhost:5000/getusername', {withCredentials: true,
-                headers: { 'Authorization': `Bearer ${token.split('=')[1]}`}})
+                const response = await Axios.get('http://localhost:5000/getusername', {
+                    withCredentials: true,
+                    headers: { 'Authorization': `Bearer ${token.split('=')[1]}` }
+                });
                 
                 if (response.data.success) {
                     setUsername(response.data.username)
@@ -57,49 +58,48 @@ export default function Header ({showSearch, onSearch, searchResults}) {
         if (token) {
             getusername();
         }
-    }, [token, setUsername])
-
+    }, [token, setUsername]);
 
     return (
         <header className='content'>
             <div className="header_content">
-            <div className='arrow_container'>
-                <button className='btn_arrow_previous'>
-                    <i className='bx bx-chevron-left'></i>
-                </button>
-                <button className='btn_arrow_next'>
-                    <i className='bx bx-chevron-right'></i>
-                </button>
-            </div>
-            {showSearch && (
-                <div className="search_box">
-                    <SearchBox onSearch={onSearch} searchResults={searchResults}/>
-                </div>
-            )}
-            {isAutenticado ? (
-                <div className='options_container'>
-                    <button className='user' onClick={ShowMenu}>
-                        <div className='user_container'>
-                            <i id='user_photo' className='bx bxs-user-circle'></i>
-                            <span className='user_name'>{username}</span>
-                            <i id='arrow_profile' className='bx bxs-down-arrow'></i>
-                        </div>
+                <div className='arrow_container'>
+                    <button className='btn_arrow_previous' onClick={handlePreviousClick}>
+                        <i className='bx bx-chevron-left'></i>
                     </button>
-                    {menu && (
-                        <div className='profile_container'>
-                            <a href="/"><h3>Conta</h3></a>
-                            <a href="/"><h3>Perfil</h3></a>
-                            <a href="/" onClick={handleLogout}><h3>Sair</h3></a>
-                        </div>
-                    )}
+                    <button className='btn_arrow_next' onClick={handleNextClick}>
+                        <i className='bx bx-chevron-right'></i>
+                    </button>
                 </div>
-            ):(
-                <div className='options_container_login'>
-                    <BtnAuthRegister title='Inscrever-se'/>
-                    <BtnAuthLogin title='Entrar'/>
-                </div>
-            )}
+                {showSearch && (
+                    <div className="search_box">
+                        <SearchBox onSearch={onSearch} searchResults={searchResults}/>
+                    </div>
+                )}
+                {isAutenticado ? (
+                    <div className='options_container'>
+                        <button className='user' onClick={ShowMenu}>
+                            <div className='user_container'>
+                                <i id='user_photo' className='bx bxs-user-circle'></i>
+                                <span className='user_name'>{username}</span>
+                                <i id='arrow_profile' className='bx bxs-down-arrow'></i>
+                            </div>
+                        </button>
+                        {menu && (
+                            <div className='profile_container'>
+                                <a href="/"><h3>Conta</h3></a>
+                                <a href="/"><h3>Perfil</h3></a>
+                                <a href="/" onClick={handleLogout}><h3>Sair</h3></a>
+                            </div>
+                        )}
+                    </div>
+                ) : (
+                    <div className='options_container_login'>
+                        <BtnAuthRegister title='Inscrever-se'/>
+                        <BtnAuthLogin title='Entrar'/>
+                    </div>
+                )}
             </div>
         </header>
-    )
+    );
 }

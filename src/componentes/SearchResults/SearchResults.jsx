@@ -17,6 +17,7 @@ function SearchResultsPage({ searchResults, isPlaying, setIsPlaying, playSongFro
         }
     };
 
+
     return (
         <>
         { hasResults &&  ( 
