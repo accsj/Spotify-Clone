@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import './Header.css';
 import { useEffect } from 'react';
 import BtnAuthLogin from '../BtnAuthLogin/BtnAuthLogin';
@@ -14,6 +14,7 @@ export default function Header({ showSearch, onSearch, searchResults, handlePrev
     const isAutenticado = useCheckAuthentication();
     const token = document.cookie.split(';').find(cookie => cookie.trim().startsWith('token'));
     const [username, setUsername] = useState('');
+    const profileRef = useRef(null);
 
     const ShowMenu = () => {
         setMenu(!menu);
@@ -60,6 +61,19 @@ export default function Header({ showSearch, onSearch, searchResults, handlePrev
         }
     }, [token, setUsername]);
 
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (profileRef.current && !profileRef.current.contains(event.target)) {
+                setMenu(false);
+            }
+        }
+        document.addEventListener('mousedown', handleClickOutside);
+        
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [profileRef]);
+
     return (
         <header className='content'>
             <div className="header_content">
@@ -86,7 +100,7 @@ export default function Header({ showSearch, onSearch, searchResults, handlePrev
                             </div>
                         </button>
                         {menu && (
-                            <div className='profile_container'>
+                            <div ref={profileRef} className='profile_container'>
                                 <a href="/"><h3>Conta</h3></a>
                                 <a href="/"><h3>Perfil</h3></a>
                                 <a href="/" onClick={handleLogout}><h3>Sair</h3></a>
