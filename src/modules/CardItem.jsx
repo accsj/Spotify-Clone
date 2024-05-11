@@ -1,9 +1,8 @@
 import { useState } from "react";
 import BtnPlayCard from "../componentes/ButtonPlayCard/BtnPlayCard";
 
-function CardItem({imageUrl, title, subtitle, songUrl, playSongFromCard, isPlaying, setIsPlaying, setIsPlayingIndex, handlePlayPause}) {
+function CardItem({imageUrl, title, subtitle, release, songUrl, playSongFromCard, isPlaying, setIsPlaying, setIsPlayingIndex, handlePlayPause, artist, albumId}) {
     const [isHovered, setIsHovered] = useState(false);
-    
 
     return (
         <button className='playlist_card_container'
@@ -14,9 +13,13 @@ function CardItem({imageUrl, title, subtitle, songUrl, playSongFromCard, isPlayi
             {imageUrl ? <img className='card_photo' src={imageUrl} alt='album' /> : <div className="liked_playlist"><i className='bx bxs-heart'></i></div>}
         </div>
         <h3>{title}</h3>
-        <p>{subtitle}</p>
+        {release ? (
+                <h4>{artist}<li>{release}</li></h4>
+            ) : (
+                <p>{subtitle}</p>
+            )}
         { isHovered && (
-            <BtnPlayCard songUrl={songUrl} playSongFromCard={playSongFromCard} imageUrl={imageUrl} title={title} subtitle={subtitle} isPlaying={isPlaying} setIsPlaying={setIsPlaying} setIsPlayingIndex={setIsPlayingIndex} handlePlayPause={handlePlayPause}/>
+            <BtnPlayCard songUrl={songUrl} playSongFromCard={playSongFromCard} imageUrl={imageUrl} title={title} subtitle={subtitle} isPlaying={isPlaying} setIsPlaying={setIsPlaying} setIsPlayingIndex={setIsPlayingIndex} handlePlayPause={handlePlayPause} albumId={albumId}/>
         )}
     </button>
     )

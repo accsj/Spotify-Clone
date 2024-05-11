@@ -44,8 +44,8 @@ export default function HomePage () {
         }
     };
 
-    const playSongFromCard = (songUrl, image, title, subtitle) => {
-        setSongUrl(songUrl);
+    const playSongFromCard = (songUrl, image, title, subtitle, albumPreview) => {
+        setSongUrl(songUrl || albumPreview);
         setImageUrl(image);
         setTitle(title);
         setSubtitle(subtitle);

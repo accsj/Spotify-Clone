@@ -2,7 +2,6 @@
     display: flex;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto auto; 
-    margin-bottom: 4rem;
     gap: 1rem;
 }
 
@@ -106,7 +105,6 @@
     align-items: left;
 }
 
-
 .search_results_music_album {
     width: 40px;
     height: 40px;
@@ -204,3 +202,12 @@
     width: 130px;
 }
 
+.search_results_albums {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto auto; 
+    gap: 20px; 
+    justify-content: left; 
+    margin-bottom: 5.5rem;
+    margin-left: 2rem;
+}

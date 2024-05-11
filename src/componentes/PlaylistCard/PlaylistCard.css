@@ -61,11 +61,19 @@
 }
 
 .playlist_card_container p {
+    display: flex;
     margin-top: 0.5rem;
     margin-left: 1rem;
-    margin-bottom: 2rem;
-
 }
+
+.playlist_card_container h4 {
+    display: inline-flex;
+    margin-top: 0.5rem;
+    margin-left: 1rem;
+    gap: 1rem;
+    color: gray;
+}
+
 
 .playlist_card_container:hover {
     background-color: #303030;
