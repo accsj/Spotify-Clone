@@ -23,7 +23,8 @@ function SearchBox ({onSearch}) {
         }
     };
 
-    const handleClear = () => {
+    const handleClear = (event) => {
+        event.preventDefault();
         setSearchItem(''); 
         onSearch('');
     };

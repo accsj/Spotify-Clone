@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Axios from 'axios';
 
-export default function Header({ showSearch, onSearch, searchResults, handlePreviousClick, handleNextClick }) {
+export default function Header({ showSearch, onSearch, searchResults }) {
     const [menu, setMenu] = useState(false);
     const isAutenticado = useCheckAuthentication();
     const token = document.cookie.split(';').find(cookie => cookie.trim().startsWith('token'));
@@ -78,10 +78,10 @@ export default function Header({ showSearch, onSearch, searchResults, handlePrev
         <header className='content'>
             <div className="header_content">
                 <div className='arrow_container'>
-                    <button className='btn_arrow_previous' onClick={handlePreviousClick}>
+                    <button className='btn_arrow_previous' to="#" onClick={() => window.history.back()}>
                         <i className='bx bx-chevron-left'></i>
                     </button>
-                    <button className='btn_arrow_next' onClick={handleNextClick}>
+                    <button className='btn_arrow_next' to="#" onClick={() => window.history.go(1)}>
                         <i className='bx bx-chevron-right'></i>
                     </button>
                 </div>

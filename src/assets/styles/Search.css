@@ -1,0 +1,39 @@
+* {
+    text-decoration: none;
+    color: rgb(228, 212, 212);
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: #000;
+    margin: 0;
+}
+
+
+.search_page {
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    text-align: left;
+    margin-right: 1%;
+    margin-left: 21%;
+    flex-direction: column;
+    cursor: default;
+    background: linear-gradient(to bottom, #169141, #222222, #121212, #191414);
+    margin-top: 1rem;
+    border-radius: 0.5%;
+}
+
+.search_page h1 {
+    font-size: 2rem;
+}
+
+.search_page h2 {
+    margin-top: 2rem;
+    margin-left: 2rem;
+    cursor: pointer;
+}
+
+.morning_title {
+    margin-left: 2rem;
+}

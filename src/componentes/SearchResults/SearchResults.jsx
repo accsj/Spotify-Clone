@@ -6,10 +6,12 @@ import CardItem from '../../modules/CardItem';
 import { useEffect, useState } from 'react';
 import Axios from 'axios';
 
+
 function SearchResultsPage({ searchResults, isPlaying, setIsPlaying, playSongFromCard, handlePlayPause }) {
     const hasResults = Array.isArray(searchResults) && searchResults.length > 0;
     const [playingIndex, setPlayingIndex] = useState(null);
     const [artistAlbums, setArtistAlbums] = useState([]);
+
 
     const handleSetIsPlaying = (key) => {
         if (key === playingIndex) {
@@ -25,7 +27,7 @@ function SearchResultsPage({ searchResults, isPlaying, setIsPlaying, playSongFro
         const fetchArtistAlbums = async () => {
             try {
                 if (searchResults && searchResults.length > 0) {
-                    const firstArtistId = searchResults[0].artistId; // Assume que o ID do primeiro artista é suficiente
+                    const firstArtistId = searchResults[0].artistId; 
                     if (firstArtistId) {
                         const response = await Axios.post('http://localhost:5000/albums', { artistId: firstArtistId });
                         setArtistAlbums(response.data);
@@ -78,7 +80,7 @@ function SearchResultsPage({ searchResults, isPlaying, setIsPlaying, playSongFro
                         <div className="search_results_albums">
                         {artistAlbums.map((album, index) => (
                             <CardItem
-                                key={index} // Use o índice como chave única
+                                key={index}
                                 songUrl={album.preview}
                                 imageUrl={album.cover}
                                 title={album.title}
@@ -89,7 +91,7 @@ function SearchResultsPage({ searchResults, isPlaying, setIsPlaying, playSongFro
                                 setIsPlaying={setIsPlaying}
                                 handlePlayPause={handlePlayPause}
                                 setIsPlayingIndex={handleSetIsPlaying}
-                                albumId={album.albumId} // Passe o ID do álbum
+                                albumId={album.albumId}
                             />
                         ))}
                         </div>

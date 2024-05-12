@@ -12,7 +12,7 @@ export default function PlaylistItemContent () {
     
     return (
         <>
-        <h1>Good Morning</h1>
+        <h1 className='morning_title'>Good Morning</h1>
             <div className='main_playlists'>
                 <PlaylistItem
                     image={null}

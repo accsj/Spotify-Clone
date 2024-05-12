@@ -1,15 +1,18 @@
-import '../../assets/styles/Home.css';
-import Sidebar from '../../componentes/Sidebar/Sidebar';
-import PlaylistContent from '../../componentes/PlaylistContent/PlaylistContent';
-import Footer from '../../componentes/Footer/Footer';
-import { useState, useEffect, useRef } from 'react';
-import useCheckAuthentication from '../../modules/Authenticator';
-import { toast } from 'react-toastify';
-import Axios from 'axios';
-import React from 'react';
+import '../../assets/styles/Search.css';
+import Sidebar from "../../componentes/Sidebar/Sidebar";
+import SearchResultsPage from "../../componentes/SearchResults/SearchResults";
+import Footer from "../../componentes/Footer/Footer";
+import React, {useState, useEffect, useRef} from "react";
+import { toast } from "react-toastify";
+import Axios from "axios";
+import useCheckAuthentication from "../../modules/Authenticator";
+import PlaylistCard from "../../componentes/PlaylistCard/PlaylistCard";
+import PlaylistItemContent from "../../componentes/PlaylistItem/PlaylistItem";
+import CardWouldLike from '../../componentes/PlaylistCardWL/PlaylistCardWL';
+import Header from "../../componentes/Header/Header";
 
+function SearchPage () {
 
-export default function HomePage () {
     const [songUrl, setSongUrl] = useState('');
     const [imageUrl, setImageUrl] = useState('');
     const [title, setTitle] = useState('');
@@ -21,13 +24,10 @@ export default function HomePage () {
     const token = document.cookie.split(';').find(cookie => cookie.trim().startsWith('token'));
     const [isLiked, setIsLiked] = useState(false);
     const [duration, setDuration] = useState(0); 
-    const [showSearch, setShowSearch] = React.useState(false);
+    const showSearch = true;
     const [searchResults, setSearchResults] = useState([]);
-
-    const toggleSearch = () => {
-        setShowSearch(true);
-    };
-
+    const [hasSearchResults, setHasSearchResults] = useState(searchResults && searchResults.length > 0);
+    
     const handleSearch = async (searchItem) => {
         try {
             if (searchItem.trim() !== '') {
@@ -118,6 +118,11 @@ export default function HomePage () {
         }
     }, [isPlaying]);
 
+
+    useEffect(() => {
+        setHasSearchResults(searchResults && searchResults.length > 0);
+    }, [searchResults]);
+
     useEffect(() => {
         const fetchMusics = async () => {
             try {
@@ -166,10 +171,42 @@ export default function HomePage () {
     return (
         <>
         <main className="main_container">
-            <Sidebar toggleSearch={toggleSearch}/>
-            <PlaylistContent playSongFromCard={playSongFromCard} musics={musics} isPlaying={isPlaying} setIsPlaying={setIsPlaying} handlePlayPause={handlePlayPause} showSearch={showSearch} onSearch={handleSearch} searchResults={searchResults}/>
+            <Sidebar />
+            <section className='search_page'>
+            <Header showSearch={showSearch} onSearch={handleSearch} />
+            {hasSearchResults ? (
+                <SearchResultsPage
+                    playSongFromCard={playSongFromCard}
+                    searchResults={searchResults}
+                    isPlaying={isPlaying}
+                    setIsPlaying={setIsPlaying}
+                    onSearch={handleSearch}
+                    handlePlayPause={handlePlayPause}
+                    showSearch={showSearch}
+                />
+            ) : (
+                <>
+                    <PlaylistItemContent playSongFromCard={playSongFromCard} />
+                    <CardWouldLike
+                        playSongFromCard={playSongFromCard}
+                        isPlaying={isPlaying}
+                        setIsPlaying={setIsPlaying}
+                        handlePlayPause={handlePlayPause}
+                    />
+                    <PlaylistCard
+                        playSongFromCard={playSongFromCard}
+                        musics={musics}
+                        isPlaying={isPlaying}
+                        setIsPlaying={setIsPlaying}
+                        handlePlayPause={handlePlayPause}
+                    />
+                </>
+            )}
+        </section>
             <Footer songUrl={songUrl} imageUrl={imageUrl} title={title} subtitle={subtitle} musics={musics} isPlaying={isPlaying} setIsPlaying={setIsPlaying} audioRef={audioRef} duration={duration} isLiked={isLiked} setIsLiked={setIsLiked} handlePlayPause={handlePlayPause}/>
         </main>
         </>
-    );
+    )
 }
+
+export default SearchPage;

@@ -3,12 +3,18 @@ import SpotifyLogo from '../../assets/imgs/spotifylogo.svg';
 import { IoIosAdd } from "react-icons/io";
 import { useNavigate } from 'react-router-dom';
 
-function Sidebar({toggleSearch}) {
+function Sidebar() {
     const navigate = useNavigate();
 
-    const handleNavigateHome = () => {
-        navigate('/')
+    const handleNavigateHome = (event) => {
+        event.preventDefault();
+        navigate('/');
     }
+
+    const handleNavigateSearch = (event) => {
+        event.preventDefault();
+        navigate('/search');
+    } 
 
     return (
         <aside className="sidebar">
@@ -22,7 +28,7 @@ function Sidebar({toggleSearch}) {
 
                     <button className='options'>
                         <i id='SearchLogo' class='bx bx-search' ></i>
-                        <p className='textoptions' onClick={toggleSearch}>Buscar</p>
+                        <p className='textoptions' onClick={handleNavigateSearch}>Buscar</p>
                     </button>
 
                     <button className='options'>

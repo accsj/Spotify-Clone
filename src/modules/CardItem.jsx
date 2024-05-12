@@ -8,7 +8,7 @@ function CardItem({imageUrl, title, subtitle, release, songUrl, playSongFromCard
         <button className='playlist_card_container'
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-    > 
+        > 
         <div className='playlist_card'>
             {imageUrl ? <img className='card_photo' src={imageUrl} alt='album' /> : <div className="liked_playlist"><i className='bx bxs-heart'></i></div>}
         </div>
