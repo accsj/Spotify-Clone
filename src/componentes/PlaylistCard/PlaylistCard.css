@@ -61,7 +61,6 @@
 }
 
 .playlist_card_container p {
-    display: flex;
     margin-top: 0.5rem;
     margin-left: 1rem;
 }

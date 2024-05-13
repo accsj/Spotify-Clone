@@ -79,10 +79,11 @@
     align-items: center;    
     margin-top: 0;
     color: gray;
+    gap: 0.5rem;
 }
 
 .search_results_better_about li {
-    margin-left: 1.5rem;
+    margin-left: 1rem;
 }
 
 .search_results_better_about li:hover {
@@ -117,8 +118,8 @@
     margin-left: 0.5rem;
     flex-direction: column;
     font-size: 0.8rem;
-
 }
+
 .music_item {
     display: flex;
     align-items: center;
@@ -136,8 +137,11 @@
 }
 
 .music_artist {
-    margin-top: 0;
+    margin-top: 0.1rem;
     margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
 }
 
 .music_title:hover, .music_artist:hover {
@@ -210,4 +214,12 @@
     justify-content: left; 
     margin-bottom: 5.5rem;
     margin-left: 2rem;
+}
+
+.iconExplicit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 2rem;
 }

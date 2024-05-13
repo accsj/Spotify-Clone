@@ -12,7 +12,6 @@ function SearchResultsPage({ searchResults, isPlaying, setIsPlaying, playSongFro
     const [playingIndex, setPlayingIndex] = useState(null);
     const [artistAlbums, setArtistAlbums] = useState([]);
 
-
     const handleSetIsPlaying = (key) => {
         if (key === playingIndex) {
             setPlayingIndex(null);
@@ -85,6 +84,7 @@ function SearchResultsPage({ searchResults, isPlaying, setIsPlaying, playSongFro
                                 imageUrl={album.cover}
                                 title={album.title}
                                 artist={searchResults[0].artist}
+                                subtitle={searchResults[0].artist}
                                 release={album.release_year}
                                 playSongFromCard={playSongFromCard}
                                 isPlaying={isPlaying}

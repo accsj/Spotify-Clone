@@ -3,6 +3,7 @@ import { useState } from 'react';
 import BtnPlaySearchMusic from '../componentes/BtnPlaySearchMusic/BtnPlaySearchMusic';
 import { IoIosMore } from "react-icons/io";
 import { IoMdAddCircleOutline } from "react-icons/io";
+import { BsExplicitFill } from "react-icons/bs";
 
 function SearchResultMusics ({searchResults, isPlaying, setIsPlaying, playSongFromCard, setIsPlayingIndex, handlePlayPause}) {
     const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -37,7 +38,7 @@ function SearchResultMusics ({searchResults, isPlaying, setIsPlaying, playSongFr
                     />}
                     <div className="music_info">
                         <h3 className="music_title">{music.title}</h3>
-                        <p className="music_artist">{music.artist}</p>
+                        <p className="music_artist">{music.isExplicit && <BsExplicitFill />}{music.artist}</p>
                     </div>
                     {hoveredIndex === index && <IoMdAddCircleOutline className='btn_search_result_add' />}
                     <p className="music_duration">{formatDuration(music.duration)}</p>

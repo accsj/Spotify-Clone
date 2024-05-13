@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import LoginPage from './pages/Login/Login';
 import RegisterPage from './pages/Register/Register';
 import RecoveryPage from './pages/Recovery/Recovery';
+import RecoveryPass from './pages/RecoveryPass/RecoveryPass';
 import { ToastContainer } from 'react-toastify';
 import SearchPage from './pages/Search/SearchPage';
 import useCheckAuthentication from './modules/Authenticator';
@@ -21,6 +22,7 @@ const AppRouter = () => {
                 <Route path='/entrar' element={isAutenticado ? <Navigate to='/'/> : <LoginPage/>} />
                 <Route path='/registro' element={isAutenticado ? <Navigate to='/'/> : <RegisterPage/>} />
                 <Route path='/redefinir-senha' element={isAutenticado ? <Navigate to='/'/> : <RecoveryPage />} />
+                <Route path='/atualizar-senha/:token' element={isAutenticado ? <Navigate to='/'/> : <RecoveryPass />} />
                 <Route path='/search' element={<SearchPage/>}/>
             </Routes>
         </Router>

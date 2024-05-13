@@ -1,6 +1,7 @@
 import '../componentes/SearchResults/SearchResults.css';
 import BtnPlaySearch from '../componentes/BtnPlaySearch/BtnPlaySearch';
 import { useState } from 'react';
+import { BsExplicitFill } from "react-icons/bs";
 
 function SearchResultsCardBetter ({ searchResults, isPlaying, setIsPlaying, playSongFromCard, setIsPlayingIndex, handlePlayPause}) {
     const firstResult = searchResults.length > 0 ? searchResults[0] : null;
@@ -20,7 +21,7 @@ function SearchResultsCardBetter ({ searchResults, isPlaying, setIsPlaying, play
                     </div>
                     <div className="search_results_better_about">
                         <h1>{firstResult.title}</h1>
-                        <h4>Música<li>{firstResult.artist}</li></h4>
+                        <h4>{firstResult.isExplicit && <BsExplicitFill />}Música<li>{firstResult.artist}</li></h4>
                     </div>
                 </div>
             )}
