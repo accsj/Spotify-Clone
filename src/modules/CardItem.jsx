@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import BtnPlayCard from "../componentes/ButtonPlayCard/BtnPlayCard"; 
 import Tooltip from "../componentes/ToolTip/Tooltip";
+import Axios from 'axios';
 
 
 function CardItem({imageUrl, title, subtitle, release, songUrl, playSongFromCard, isPlaying, setIsPlaying, setIsPlayingIndex, handlePlayPause, artist, albumId, albumPreview}) {
     const [isHovered, setIsHovered] = useState(false);
+
 
     return (
         <button

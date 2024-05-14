@@ -43,22 +43,6 @@ function SearchResultsPage({ searchResults, isPlaying, setIsPlaying, playSongFro
         fetchArtistAlbums();
     }, [searchResults]);
 
-    useEffect(() => {
-        const fetchAlbumPreview = async (albumId) => {
-            try {
-                const response = await Axios.post('http://localhost:5000/tracks', { albumId });
-                if (response.data && response.data.length > 0) {
-                    setAlbumPreview(response.data[0].preview);
-                }
-            } catch (error) {
-                console.error('Erro ao obter a preview do álbum:', error);
-            }
-        };
-    
-        if (artistAlbums.length > 0) {
-            fetchAlbumPreview(artistAlbums[0].albumId); 
-        }
-    }, [artistAlbums]);
 
     return (
         <>
