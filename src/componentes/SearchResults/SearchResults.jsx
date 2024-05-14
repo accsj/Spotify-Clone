@@ -11,14 +11,15 @@ function SearchResultsPage({ searchResults, isPlaying, setIsPlaying, playSongFro
     const hasResults = Array.isArray(searchResults) && searchResults.length > 0;
     const [playingIndex, setPlayingIndex] = useState(null);
     const [artistAlbums, setArtistAlbums] = useState([]);
+    const [albumPreview, setAlbumPreview] = useState('');
 
-    const handleSetIsPlaying = (key) => {
-        if (key === playingIndex) {
+    const handleSetIsPlaying = (index) => {
+        if (index === playingIndex) {
             setPlayingIndex(null);
             setIsPlaying(false);
         } else {
             setIsPlaying(true);
-            setPlayingIndex(key);
+            setPlayingIndex(index);
         }
     };
 
@@ -42,6 +43,23 @@ function SearchResultsPage({ searchResults, isPlaying, setIsPlaying, playSongFro
         fetchArtistAlbums();
     }, [searchResults]);
 
+    useEffect(() => {
+        const fetchAlbumPreview = async (albumId) => {
+            try {
+                const response = await Axios.post('http://localhost:5000/tracks', { albumId });
+                if (response.data && response.data.length > 0) {
+                    setAlbumPreview(response.data[0].preview);
+                }
+            } catch (error) {
+                console.error('Erro ao obter a preview do álbum:', error);
+            }
+        };
+    
+        if (artistAlbums.length > 0) {
+            fetchAlbumPreview(artistAlbums[0].albumId); 
+        }
+    }, [artistAlbums]);
+
     return (
         <>
             {hasResults && (
@@ -64,14 +82,23 @@ function SearchResultsPage({ searchResults, isPlaying, setIsPlaying, playSongFro
                             <div className="search_results_musics_title">
                                 <h2>Músicas</h2>
                             </div>
-                            <SearchResultMusics
-                                searchResults={searchResults}
-                                isPlaying={isPlaying}
-                                setIsPlaying={setIsPlaying}
-                                playSongFromCard={playSongFromCard}
-                                setIsPlayingIndex={handleSetIsPlaying}
-                                handlePlayPause={handlePlayPause}
-                            />
+                            {searchResults.map((music, index) => (
+                                <SearchResultMusics
+                                    index={index}
+                                    searchResults={music}
+                                    isPlaying={isPlaying}
+                                    setIsPlaying={setIsPlaying}
+                                    playSongFromCard={playSongFromCard}
+                                    setIsPlayingIndex={handleSetIsPlaying}
+                                    handlePlayPause={handlePlayPause}
+                                    songUrl={music.preview}
+                                    imageUrl={music.albumCover}
+                                    title={music.title}
+                                    subtitle={music.artist}
+                                    duration={music.duration}
+                                    isExplicit={music.isExplicit}
+                                />
+                            ))}
                         </div>
                     </div>
                     <div className="search_results_albums_container">
@@ -79,7 +106,7 @@ function SearchResultsPage({ searchResults, isPlaying, setIsPlaying, playSongFro
                         <div className="search_results_albums">
                         {artistAlbums.map((album, index) => (
                             <CardItem
-                                key={index}
+                                index={index}
                                 songUrl={album.preview}
                                 imageUrl={album.cover}
                                 title={album.title}
@@ -92,6 +119,7 @@ function SearchResultsPage({ searchResults, isPlaying, setIsPlaying, playSongFro
                                 handlePlayPause={handlePlayPause}
                                 setIsPlayingIndex={handleSetIsPlaying}
                                 albumId={album.albumId}
+                                albumPreview={albumPreview}
                             />
                         ))}
                         </div>

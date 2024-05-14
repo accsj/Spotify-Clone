@@ -60,17 +60,13 @@ function SearchPage () {
             try {
                 const response = await Axios.get('http://localhost:5000/checkLikeSong', {
                     params: {
-                        songUrl: songUrl
+                        songUrl: songUrl,
                     },
                     withCredentials: true,
                     headers: { 'Authorization': `Bearer ${token.split('=')[1]}`
                     }
                 });
-                if (response.data.liked) {
-                    setIsLiked(true);
-                } else {
-                    setIsLiked(false);
-                }
+                setIsLiked(response.data.liked);
             } catch (error) {
                 toast.error('Erro ao verificar música na playlist.', {
                     position: "top-right",

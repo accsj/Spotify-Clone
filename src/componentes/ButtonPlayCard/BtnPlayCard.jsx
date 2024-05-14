@@ -1,23 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import '../ButtonPlayCard/BtnPlayCard.css';
-import Axios from 'axios';
 
-export default function BtnPlayCard({ playSongFromCard, songUrl, imageUrl, title, subtitle, isPlaying, setIsPlaying, setIsPlayingIndex, handlePlayPause, albumId }) {
-    const [albumPreview, setAlbumPreview] = useState('');
-    useEffect(() => {
-        const fetchAlbumPreview = async () => {
-            try {
-                const response = await Axios.post('http://localhost:5000/tracks', { albumId });
-                if (response.data && response.data.length > 0) {
-                    setAlbumPreview(response.data[0].preview);
-                }
-            } catch (error) {
-                console.error('Erro ao obter a preview do álbum:', error);
-            }
-        };
-
-        fetchAlbumPreview();
-    }, [albumId]);
+export default function BtnPlayCard({ playSongFromCard, songUrl, imageUrl, title, subtitle, isPlaying, setIsPlaying, setIsPlayingIndex, handlePlayPause, albumPreview}) {
 
     const handlePlayButtonClick = () => {
         if (!isPlaying) {
@@ -29,6 +13,7 @@ export default function BtnPlayCard({ playSongFromCard, songUrl, imageUrl, title
             setIsPlayingIndex(null);
         }
     };
+    console.log(albumPreview)
 
     return (
         <button className='btn_play_card' onClick={handlePlayButtonClick}>

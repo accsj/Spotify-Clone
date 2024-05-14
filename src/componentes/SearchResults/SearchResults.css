@@ -120,13 +120,6 @@
     font-size: 0.8rem;
 }
 
-.music_item {
-    display: flex;
-    align-items: center;
-    height: 60px;
-    border-radius: 5px;
-}
-
 .music_item:hover{
     background-color: #292929;
 }
@@ -148,21 +141,19 @@
     text-decoration: underline;
 }
 
-.search_results_musics_container {
+.music_item {
     background-color: #292929;
-    width: 80%;
-    height: 65%;
+    height: 3.2rem;
     margin-left: 1.5rem;
     margin-right: 0;
-    border-radius: 10px;
     display: flex;
-    align-items: left;
+    align-items: center;
     justify-content: left;
-    flex-direction: column;
     width: 100%;
+    border-radius: 5px;
 }
 
-.search_results_musics_container:hover {
+.music_item:hover {
     background-color: #323232;
     cursor: pointer;
     transition: all .1s ease-in-out;
@@ -223,3 +214,4 @@
     color: white;
     font-size: 2rem;
 }
+

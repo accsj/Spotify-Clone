@@ -42,7 +42,6 @@ export default function PlaylistCard({ playSongFromCard, musics, isPlaying, setI
                         playSongFromCard={playSongFromCard}
                         setIsPlaying={setIsPlaying}
                         handlePlayPause={handlePlayPause}
-
                     />
                 ))}
             </div>
