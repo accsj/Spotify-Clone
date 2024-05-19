@@ -11,7 +11,6 @@ function SearchResultsPage({ searchResults, isPlaying, setIsPlaying, playSongFro
     const hasResults = Array.isArray(searchResults) && searchResults.length > 0;
     const [playingIndex, setPlayingIndex] = useState(null);
     const [artistAlbums, setArtistAlbums] = useState([]);
-    const [albumPreview, setAlbumPreview] = useState('');
 
     const handleSetIsPlaying = (index) => {
         if (index === playingIndex) {
@@ -103,7 +102,6 @@ function SearchResultsPage({ searchResults, isPlaying, setIsPlaying, playSongFro
                                 handlePlayPause={handlePlayPause}
                                 setIsPlayingIndex={handleSetIsPlaying}
                                 albumId={album.albumId}
-                                albumPreview={albumPreview}
                             />
                         ))}
                         </div>

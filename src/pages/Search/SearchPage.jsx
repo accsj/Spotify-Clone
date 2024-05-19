@@ -66,7 +66,11 @@ function SearchPage () {
                     headers: { 'Authorization': `Bearer ${token.split('=')[1]}`
                     }
                 });
-                setIsLiked(response.data.liked);
+                if (response.data.liked === false) {
+                    setIsLiked(false);
+                } else {
+                    setIsLiked(true)
+                }
             } catch (error) {
                 toast.error('Erro ao verificar música na playlist.', {
                     position: "top-right",
