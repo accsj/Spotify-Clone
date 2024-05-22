@@ -2,7 +2,7 @@ import { useState } from "react";
 import BtnPlayItem from '../componentes/ButtonPlayItem/BtnPlayItem';
 import Tooltip from "../componentes/ToolTip/Tooltip";
 
-function PlaylistItem({ image, title }) {
+function PlaylistItem({ imageUrl, title, isPlaying, setIsPlaying, handlePlayPause, playSongFromCard, albumId, setIsPlayingIndex }) {
     const [isHovered, setIsHovered] = useState(false);
 
     return (
@@ -12,7 +12,7 @@ function PlaylistItem({ image, title }) {
             onMouseLeave={() => setIsHovered(false)}
         >
             <div className='playlist'>
-                {image ? <img className='album_photo' src={image} alt="album" /> : <div className="liked_playlist"><i className='bx bxs-heart'></i></div>}
+                {imageUrl ? <img className='album_photo' src={imageUrl} alt="album" /> : <div className="liked_playlist"><i className='bx bxs-heart'></i></div>}
             </div>
             {title.length > 20 ? (
                 <Tooltip content={title}>
@@ -22,7 +22,15 @@ function PlaylistItem({ image, title }) {
                 <h3>{title}</h3>
             )}
             {isHovered && (
-                <BtnPlayItem />
+                <BtnPlayItem 
+                isPlaying={isPlaying} 
+                setIsPlaying={setIsPlaying} 
+                handlePlayPause={handlePlayPause}
+                playSongFromCard={playSongFromCard}
+                albumId={albumId}
+                imageUrl={imageUrl}
+                title={title}
+                setIsPlayingIndex={setIsPlayingIndex}/>
             )}
         </button>
     );

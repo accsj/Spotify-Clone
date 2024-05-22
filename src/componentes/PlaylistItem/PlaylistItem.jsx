@@ -3,9 +3,10 @@ import Axios from 'axios';
 import '../PlaylistItem/PlaylistItem.css';
 import PlaylistItem from '../../modules/PlaylistItems';
 
-export default function PlaylistItemContent() {
+export default function PlaylistItemContent({isPlaying, setIsPlaying, handlePlayPause, playSongFromCard}) {
     const [playlists, setPlaylists] = useState([]);
     const [hoveredIndex, setHoveredIndex] = useState(null);
+    const [playingIndex, setPlayingIndex] = useState(null);
     const artistsIds = [296861];
     const [artistAlbums, setArtistAlbums] = useState([]);
 
@@ -27,6 +28,15 @@ export default function PlaylistItemContent() {
 
         fetchArtistAlbums();
     }, [artistsIds]); 
+    const handleSetIsPlaying = (index) => {
+        if (index === playingIndex) {
+            setPlayingIndex(null);
+            setIsPlaying(false);
+        } else {
+            setIsPlaying(true);
+            setPlayingIndex(index);
+        }
+    };
     
     return (
         <>
@@ -35,10 +45,16 @@ export default function PlaylistItemContent() {
                 {artistAlbums.map((playlist, index) => (
                     <PlaylistItem
                         key={index}
-                        image={playlist.cover}
+                        imageUrl={playlist.cover}
                         title={playlist.title}
                         hoveredIndex={hoveredIndex}
                         setHoveredIndex={setHoveredIndex}
+                        isPlaying={isPlaying}
+                        setIsPlaying={setIsPlaying}
+                        setIsPlayingIndex={handleSetIsPlaying}
+                        handlePlayPause={handlePlayPause}
+                        playSongFromCard={playSongFromCard}
+                        albumId={playlist.albumId}
                     />
                 ))}
             </div>
